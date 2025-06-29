@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shyam Traders - Product Catalogue</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #2c3e50;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            gap: 20px;
+        }
+
+        .stat {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #34495e;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .quantity {
+            color: #8e44ad;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+            display: none;
+        }
+
+        .edit-mode {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .edit-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .edit-btn:hover {
+            background: #2980b9;
+        }
+
+        .edit-input {
+            width: 80px;
+            padding: 4px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            text-align: center;
+        }
+
+        .save-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .stats {
+                flex-direction: column;
+            }
+            
+            th, td {
+                padding: 8px 4px;
+                font-size: 0.9rem;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Shyam Traders</h1>
+            <div class="contact-info">
+                📞 Contact: [Your Number] | 📧 Email: [Your Email]
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="edit-mode">
+                <button class="edit-btn" onclick="toggleEditMode()">Edit Prices & Quantities</button>
+                <span id="edit-status" style="margin-left: 15px; color: #7f8c8d;"></span>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number" id="total-products">21</div>
+                    <div class="stat-label">Total Products</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="total-value">₹0</div>
+                    <div class="stat-label">Total Catalogue Value</div>
+                </div>
+            </div>
+
+            <input type="text" class="search-box" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
+
+            <table id="productTable">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Price (₹)</th>
+                    </tr>
+                </thead>
+                <tbody id="productTableBody">
+                </tbody>
+            </table>
+
+            <div class="no-results" id="noResults">
+                No products found matching your search.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Product data in JSON format - easily editable
+        let products = [
+            { id: 1, name: "White Floor Cleaner", quantity: "1 Litre", price: 0 },
+            { id: 2, name: "Toilet Cleaner", quantity: "500ml", price: 0 },
+            { id: 3, name: "Glass Cleaner", quantity: "500ml", price: 0 },
+            { id: 4, name: "Multipurpose Liquid", quantity: "1 Litre", price: 0 },
+            { id: 5, name: "Handwash", quantity: "250ml", price: 0 },
+            { id: 6, name: "Black Floor Cleaner", quantity: "1 Litre", price: 0 },
+            { id: 7, name: "White / Red Harpic", quantity: "500ml", price: 0 },
+            { id: 8, name: "Shampoo, Shower Gel, Body Lotion", quantity: "200ml", price: 0 },
+            { id: 9, name: "Room Freshener", quantity: "300ml", price: 0 },
+            { id: 10, name: "Lizol / P2", quantity: "975ml", price: 0 },
+            { id: 11, name: "Garbage Bag – Red, Blue, Green, Yellow", quantity: "30 pcs", price: 0 },
+            { id: 12, name: "Garbage 17*23 Roll", quantity: "1 Roll", price: 0 },
+            { id: 13, name: "Plastic Juna / Steel Juna / Green Pad", quantity: "1 pc", price: 0 },
+            { id: 14, name: "Toilet Brush / WC Brush", quantity: "1 pc", price: 0 },
+            { id: 15, name: "Cotton Gloves / Slipper", quantity: "1 pair", price: 0 },
+            { id: 16, name: "Glass Cover / Coaster / DND Tag", quantity: "1 pc", price: 0 },
+            { id: 17, name: "Net Cap / Chef Cap / Shower Cap", quantity: "1 pc", price: 0 },
+            { id: 18, name: "Glycerin Soap / White Soap / Medimix", quantity: "100g", price: 0 },
+            { id: 19, name: "Tissue Paper, M Fold, Car Tissue", quantity: "1 Pack", price: 0 },
+            { id: 20, name: "Tray Mat, Round / Square", quantity: "1 pc", price: 0 },
+            { id: 21, name: "Green Tea / Coffee / Tea Bag", quantity: "25 bags", price: 0 }
+        ];
+
+        let editMode = false;
+        let filteredProducts = [...products];
+
+        function renderTable() {
+            const tbody = document.getElementById('productTableBody');
+            tbody.innerHTML = '';
+
+            filteredProducts.forEach((product, index) => {
+                const row = document.createElement('tr');
+                
+                if (editMode) {
+                    row.innerHTML = `
+                        <td>${product.id}</td>
+                        <td>${product.name}</td>
+                        <td>
+                            <input type="text" class="edit-input" value="${product.quantity}" 
+                                   onchange="updateProduct(${product.id}, 'quantity', this.value)">
+                        </td>
+                        <td class="price">
+                            ₹<input type="number" class="edit-input" value="${product.price}" 
+                                   onchange="updateProduct(${product.id}, 'price', this.value)">
+                        </td>
+                    `;
+                } else {
+                    row.innerHTML = `
+                        <td>${product.id}</td>
+                        <td>${product.name}</td>
+                        <td class="quantity">${product.quantity}</td>
+                        <td class="price">₹${product.price}</td>
+                    `;
+                }
+                
+                tbody.appendChild(row);
+            });
+
+            updateStats();
+        }
+
+        function updateProduct(id, field, value) {
+            const product = products.find(p => p.id === id);
+            if (product) {
+                if (field === 'price') {
+                    product[field] = parseFloat(value) || 0;
+                } else {
+                    product[field] = value;
+                }
+                updateStats();
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('total-products').textContent = products.length;
+            const totalValue = products.reduce((sum, product) => sum + product.price, 0);
+            document.getElementById('total-value').textContent = `₹${totalValue}`;
+        }
+
+        function toggleEditMode() {
+            editMode = !editMode;
+            const btn = document.querySelector('.edit-btn');
+            const status = document.getElementById('edit-status');
+            
+            if (editMode) {
+                btn.textContent = 'Save & Exit Edit Mode';
+                btn.style.background = '#27ae60';
+                status.textContent = '✏️ Edit Mode Active - Click fields to modify';
+                status.style.color = '#27ae60';
+            } else {
+                btn.textContent = 'Edit Prices & Quantities';
+                btn.style.background = '#3498db';
+                status.textContent = '💾 Changes saved successfully!';
+                status.style.color = '#27ae60';
+                setTimeout(() => {
+                    status.textContent = '';
+                }, 3000);
+            }
+            
+            renderTable();
+        }
+
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.quantity.toLowerCase().includes(searchTerm)
+            );
+
+            const noResults = document.getElementById('noResults');
+            const table = document.getElementById('productTable');
+
+            if (filteredProducts.length === 0) {
+                noResults.style.display = 'block';
+                table.style.display = 'none';
+            } else {
+                noResults.style.display = 'none';
+                table.style.display = 'table';
+            }
+
+            renderTable();
+        }
+
+        // Initialize the table
+        renderTable();
+
+        // Add some sample data for demonstration (you can remove this)
+        console.log('Product data structure:', JSON.stringify(products[0], null, 2));
+        console.log('To modify prices programmatically, use: products[0].price = 150');
+    </script>
+</body>
+</html>
