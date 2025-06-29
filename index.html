@@ -528,18 +528,7 @@ tr:hover {
       }
     }
 
-    function updateStats() {
-      const totalProducts = products.length;
-      const totalValue = products.reduce((sum, product) => {
-        const price = parseFloat(product.price) || 0;
-        return sum + price;
-      }, 0);
-      const visibleProducts = filteredProducts.length;
-
-      document.getElementById('total-products').textContent = totalProducts;
-      document.getElementById('total-value').textContent = `₹${totalValue.toLocaleString('en-IN')}`;
-      document.getElementById('visible-products').textContent = visibleProducts;
-    }
+    
 
     function renderTable() {
       const tbody = document.getElementById('productTableBody');
@@ -576,7 +565,6 @@ tr:hover {
         tableContainer.style.display = 'block';
       }
 
-      updateStats();
       renderTable();
     }
 
