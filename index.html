@@ -262,6 +262,124 @@
     font-size: 0.9rem;
     color: #999;
   }
+
+    .contact-form-section {
+      background: white;
+      border: 1px solid #e5e5e5;
+      border-radius: 6px;
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+
+    .form-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-header h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+
+    .form-header p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .contact-form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .form-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #d1d1d1;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 400;
+      transition: border-color 0.2s ease;
+      background: white;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #666;
+    }
+
+    .form-input::placeholder {
+      color: #999;
+    }
+
+    .submit-btn {
+      background: #1a1a1a;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .submit-btn:hover {
+      background: #333;
+    }
+
+    .submit-btn:active {
+      background: #000;
+    }
+
+    .btn-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .form-success {
+      background: #f0f9f0;
+      color: #2d5a2d;
+      border: 1px solid #b8e6b8;
+      border-radius: 6px;
+      padding: 12px;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .success-icon {
+      width: 16px;
+      height: 16px;
+      color: #2d5a2d;
+    }
+
+    @media (max-width: 640px) {
+      .form-group {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .submit-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -309,6 +427,32 @@
     </div>
 
     <div class="content">
+            <div class="contact-form-section">
+        <div class="form-header">
+          <h3>Hear From Us</h3>
+          <p>Get product updates, quotes, and special offers directly in your inbox</p>
+        </div>
+        
+        <form name="contact" method="POST" data-netlify="true" class="contact-form" id="contactForm">
+          <input type="hidden" name="form-name" value="contact" />
+          <div class="form-group">
+            <input type="email" name="email" id="email" placeholder="Enter your email address" required class="form-input" />
+            <input type="tel" name="phone" id="phone" placeholder="Enter your phone number" required class="form-input" />
+            <button type="submit" class="submit-btn">
+              <span class="btn-text">Hear From Us</span>
+              <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+              </svg>
+            </button>
+          </div>
+          <div class="form-success" id="formSuccess" style="display: none;">
+            <svg class="success-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            Thank you! We'll be in touch soon.
+          </div>
+        </form>
+      </div>
       
 
       <div class="search-container">
