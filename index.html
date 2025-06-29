@@ -180,7 +180,7 @@
         const data = await response.json();
 
         // Extracting 'record' array from JSONBin response
-        products = data.record;
+        products = data;
         filteredProducts = [...products];
 
         renderTable();
