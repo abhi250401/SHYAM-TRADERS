@@ -213,7 +213,7 @@
   .serial-number {
     color: #999;
     font-weight: 500;
-    width: 80px;
+    width: 90px;
   }
 
   .product-name {
@@ -427,33 +427,7 @@
     </div>
 
     <div class="content">
-            <div class="contact-form-section">
-        <div class="form-header">
-          <h3>Hear From Us</h3>
-          <p>Get product updates, quotes, and special offers directly in your inbox</p>
-        </div>
-        
-        <form name="contact" method="POST" data-netlify="true" class="contact-form" id="contactForm">
-          <input type="hidden" name="form-name" value="contact" />
-          <div class="form-group">
-            <input type="email" name="email" id="email" placeholder="Enter your email address" required class="form-input" />
-            <input type="tel" name="phone" id="phone" placeholder="Enter your phone number" required class="form-input" />
-            <button type="submit" class="submit-btn">
-              <span class="btn-text">Hear From Us</span>
-              <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-              </svg>
-            </button>
-          </div>
-          <div class="form-success" id="formSuccess" style="display: none;">
-            <svg class="success-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-            </svg>
-            Thank you! We'll be in touch soon.
-          </div>
-        </form>
-      </div>
-      
+           
 
       <div class="search-container">
         <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -483,7 +457,37 @@
         <h3>No products found</h3>
         <p>Try adjusting your search terms or browse all products</p>
       </div>
+      
+      
+       <div class="contact-form-section" style="margin-top:20px">
+        <div class="form-header">
+          <h3>Hear From Us</h3>
+          <p>Get product updates, quotes, and special offers directly in your inbox</p>
+        </div>
+        
+        <form name="contact" method="POST" data-netlify="true" class="contact-form" id="contactForm">
+          <input type="hidden" name="form-name" value="contact" />
+          <div class="form-group">
+            <input type="email" name="email" id="email" placeholder="Enter your email address" required class="form-input" />
+            <input type="tel" name="phone" id="phone" placeholder="Enter your phone number" required class="form-input" />
+            <button type="submit" class="submit-btn">
+              <span class="btn-text">Hear From Us</span>
+              <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+              </svg>
+            </button>
+          </div>
+          <div class="form-success" id="formSuccess" style="display: none;">
+            <svg class="success-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            Thank you! We'll be in touch soon.
+          </div>
+        </form>
+      </div>
+      
     </div>
+    
   </div>
 
   <script>
