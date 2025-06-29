@@ -39,6 +39,15 @@
       color: #bdc3c7;
     }
 
+    .tagline {
+      background: #f1c40f;
+      color: #2c3e50;
+      text-align: center;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
     .content {
       padding: 20px;
     }
@@ -50,32 +59,6 @@
       border: 1px solid #ddd;
       border-radius: 4px;
       font-size: 1rem;
-    }
-
-    .stats {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 15px;
-      gap: 20px;
-    }
-
-    .stat {
-      background: #ecf0f1;
-      padding: 12px;
-      border-radius: 4px;
-      flex: 1;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 1.5rem;
-      color: #2c3e50;
-      font-weight: bold;
-    }
-
-    .stat-label {
-      color: #7f8c8d;
-      font-size: 0.85rem;
     }
 
     table {
@@ -114,11 +97,16 @@
       display: none;
     }
 
-    @media (max-width: 768px) {
-      .stats {
-        flex-direction: column;
-      }
+    .footer {
+      background: #ecf0f1;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+      font-size: 0.95rem;
+      color: #2c3e50;
+    }
 
+    @media (max-width: 768px) {
       th, td {
         font-size: 0.9rem;
       }
@@ -129,21 +117,16 @@
   <div class="container">
     <div class="header">
       <h1>Shyam Traders</h1>
-      <div class="contact-info">📞 Contact: 9999650168 </div>
+      <div class="contact-info">📞 Contact: 9999650168</div>
+    </div>
+
+    <!-- ✨ Tagline -->
+    <div class="tagline">
+      Your One-Stop Solution for Housekeeping Essentials, Cleaning Products, Hotel Amenities & Confectionary Items!<br>
+      We are Trusted Manufacturers & Suppliers – Bulk Orders Ready with Free Delivery!
     </div>
 
     <div class="content">
-<!--       <div class="stats">
-        <div class="stat">
-          <div class="stat-number" id="total-products">0</div>
-          <div class="stat-label">Total Products</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number" id="total-value">₹0</div>
-          <div class="stat-label">Total Value</div>
-        </div>
-      </div> -->
-
       <input type="text" class="search-box" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()"/>
 
       <table id="productTable">
@@ -159,6 +142,12 @@
       </table>
 
       <div class="no-results" id="noResults">No products found matching your search.</div>
+    </div>
+
+    <!-- 📍 Footer -->
+    <div class="footer">
+      📍 <strong>Address:</strong> A-47, Sector 62, Noida, UP, India <br>
+      🚚 <strong>Free Delivery Available</strong> | 📞 <strong>Contact:</strong> 9999650168
     </div>
   </div>
 
@@ -178,11 +167,8 @@
       try {
         const response = await fetch(apiUrl, { headers });
         const data = await response.json();
-
-        // Extracting 'record' array from JSONBin response
-        products = data;
+        products = data.record;
         filteredProducts = [...products];
-
         renderTable();
       } catch (error) {
         console.error('Error fetching product data:', error);
@@ -206,10 +192,7 @@
         `;
         tbody.innerHTML += row;
       });
-
     }
-
-   
 
     function searchProducts() {
       const term = document.getElementById('searchInput').value.toLowerCase();
