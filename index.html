@@ -167,7 +167,7 @@
       try {
         const response = await fetch(apiUrl, { headers });
         const data = await response.json();
-        products = data.record;
+        products = data;
         filteredProducts = [...products];
         renderTable();
       } catch (error) {
