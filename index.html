@@ -207,14 +207,9 @@
         tbody.innerHTML += row;
       });
 
-      updateStats();
     }
 
-    function updateStats() {
-      document.getElementById('total-products').textContent = products.length;
-      const totalValue = products.reduce((sum, p) => sum + (p.price || 0), 0);
-      document.getElementById('total-value').textContent = `₹${totalValue}`;
-    }
+   
 
     function searchProducts() {
       const term = document.getElementById('searchInput').value.toLowerCase();
