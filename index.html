@@ -551,7 +551,7 @@ tr:hover {
             <td class="serial-number">${index + 1}</td>
             <td class="product-name">${product.name}</td>
             <td><span class="quantity">${product.quantity}</span></td>
-            <td class="price">₹${parseFloat(product.price).toLocaleString('en-IN')}</td>
+            <td class="price">₹${(product.price).toLocaleString('en-IN')}</td>
           </tr>
         `;
         tbody.innerHTML += row;
