@@ -179,12 +179,36 @@
   .table-container {
     background: white;
     border-radius: 6px;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     border: 1px solid #e5e5e5;
+    /* Custom scrollbar styles */
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e0 #f1f5f9;
+  }
+
+  .table-container::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .table-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+  }
+
+  .table-container::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+
+  .table-container::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
   }
 
   table {
     width: 100%;
+    min-width: 600px;
     border-collapse: collapse;
   }
 
@@ -197,6 +221,10 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     text-align: left;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
 
   td {
@@ -204,6 +232,7 @@
     border-bottom: 1px solid #f0f0f0;
     font-size: 0.9rem;
     font-weight: 400;
+    white-space: nowrap;
   }
 
   tr:hover {
@@ -219,6 +248,7 @@
   .product-name {
     color: #1a1a1a;
     font-weight: 500;
+    min-width: 200px;
   }
 
   .quantity {
@@ -235,6 +265,22 @@
     color: #0f172a;
     font-weight: 600;
     font-size: 0.95rem;
+  }
+
+  .scroll-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+    color: #666;
+    opacity: 0.8;
+  }
+
+  .scroll-hint svg {
+    width: 16px;
+    height: 16px;
   }
 
   .no-results {
@@ -368,7 +414,7 @@
       color: #2d5a2d;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       .form-group {
         flex-direction: column;
         gap: 12px;
@@ -377,6 +423,29 @@
       .submit-btn {
         width: 100%;
         justify-content: center;
+      }
+
+      .scroll-hint {
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        margin: 10px;
+        border-radius: 8px;
+      }
+
+      .header {
+        padding: 30px 20px 25px;
+      }
+
+      .company-name {
+        font-size: 2rem;
+      }
+
+      .content {
+        padding: 15px;
       }
     }
 
@@ -434,6 +503,13 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
         </svg>
         <input type="text" class="search-box" id="searchInput" placeholder="Search products by name or quantity..." onkeyup="searchProducts()"/>
+      </div>
+
+      <div class="scroll-hint">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/>
+        </svg>
+        <span>Scroll horizontally to view all columns</span>
       </div>
 
       <div class="table-container">
@@ -510,6 +586,7 @@
         filteredProducts = [...products];
 
         renderTable();
+        checkScrollability();
       } catch (error) {
         console.error('Error fetching product data:', error);
         document.getElementById('productTableBody').innerHTML =
@@ -517,7 +594,16 @@
       }
     }
 
-    
+    function checkScrollability() {
+      const tableContainer = document.querySelector('.table-container');
+      const scrollHint = document.querySelector('.scroll-hint');
+      
+      if (tableContainer.scrollWidth > tableContainer.clientWidth) {
+        scrollHint.style.display = 'flex';
+      } else {
+        scrollHint.style.display = 'none';
+      }
+    }
 
     function renderTable() {
       const tbody = document.getElementById('productTableBody');
@@ -555,7 +641,11 @@
       }
 
       renderTable();
+      checkScrollability();
     }
+
+    // Handle window resize to check scrollability
+    window.addEventListener('resize', checkScrollability);
 
     // Initialize
     fetchProducts();
