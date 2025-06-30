@@ -447,6 +447,62 @@
       .content {
         padding: 15px;
       }
+
+      .download-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    .download-section {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .download-btn {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+      background: linear-gradient(135deg, #3730a3, #6d28d9);
+    }
+
+    .download-btn:active {
+      transform: translateY(0);
+    }
+
+    .download-btn:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .download-icon {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .download-btn:hover .download-icon {
+      transform: translateY(2px);
     }
 
 </style>
@@ -496,7 +552,14 @@
     </div>
 
     <div class="content">
-           
+      <div class="download-section">
+        <button id="downloadPDF" class="download-btn">
+          <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          Download PDF Catalog
+        </button>
+      </div>
 
       <div class="search-container">
         <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -566,6 +629,8 @@
     
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.0/jspdf.plugin.autotable.min.js"></script>
   <script>
     const apiUrl = 'https://api.jsonbin.io/v3/b/68616fcf8a456b7966b817bd/latest';
 
@@ -646,6 +711,172 @@
 
     // Handle window resize to check scrollability
     window.addEventListener('resize', checkScrollability);
+
+    // PDF Download functionality
+    function downloadPDF() {
+      const downloadBtn = document.getElementById('downloadPDF');
+      downloadBtn.disabled = true;
+      downloadBtn.innerHTML = `
+        <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+        </svg>
+        Generating PDF...
+      `;
+
+      // Wait a bit to ensure libraries are loaded
+      setTimeout(() => {
+        try {
+          // Check if jsPDF is available
+          if (typeof window.jspdf === 'undefined') {
+            throw new Error('jsPDF library not loaded');
+          }
+
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF();
+
+          // Add company header
+          doc.setFontSize(24);
+          doc.setFont('helvetica', 'bold');
+          doc.text('Shyam Traders', 20, 25);
+          
+          doc.setFontSize(10);
+          doc.setFont('helvetica', 'normal');
+          doc.text('Product Catalogue', 20, 32);
+          
+          // Add contact info
+          doc.setFontSize(9);
+          doc.text('Phone: 9999651068', 20, 42);
+          doc.text('Address: L145, Gali number 5, Mahipalpur Extension, New Delhi - 37', 20, 48);
+          
+          // Add a line separator
+          doc.setLineWidth(0.5);
+          doc.line(20, 55, 190, 55);
+
+          // Create sample data if products aren't loaded yet
+          const dataToUse = filteredProducts.length > 0 ? filteredProducts : [
+            { name: "Sample Product 1", quantity: "1L", price: 150 },
+            { name: "Sample Product 2", quantity: "500ml", price: 80 },
+            { name: "Sample Product 3", quantity: "2L", price: 300 }
+          ];
+
+          // Prepare table data
+          const tableData = dataToUse.map((product, index) => [
+            index + 1,
+            product.name,
+            product.quantity,
+            `₹${product.price.toLocaleString('en-IN')}`
+          ]);
+
+          // Add table using autoTable
+          doc.autoTable({
+            head: [['S.No', 'Product Name', 'Quantity', 'Price (₹)']],
+            body: tableData,
+            startY: 65,
+            styles: {
+              fontSize: 9,
+              cellPadding: 4,
+              overflow: 'linebreak',
+              halign: 'left'
+            },
+            headStyles: {
+              fillColor: [233, 239, 245],
+              textColor: [51, 65, 85],
+              fontStyle: 'bold',
+              fontSize: 9
+            },
+            columnStyles: {
+              0: { width: 20, halign: 'center' },
+              1: { width: 80 },
+              2: { width: 30, halign: 'center' },
+              3: { width: 35, halign: 'right' }
+            },
+            alternateRowStyles: {
+              fillColor: [248, 250, 252]
+            },
+            margin: { left: 20, right: 20 }
+          });
+
+          // Add footer
+          const pageCount = doc.internal.getNumberOfPages();
+          for (let i = 1; i <= pageCount; i++) {
+            doc.setPage(i);
+            doc.setFontSize(8);
+            doc.setTextColor(128);
+            doc.text(
+              `Generated on ${new Date().toLocaleDateString('en-IN')} | Page ${i} of ${pageCount}`,
+              20,
+              doc.internal.pageSize.height - 10
+            );
+            doc.text(
+              'Shyam Traders - Your trusted supplier',
+              doc.internal.pageSize.width - 20,
+              doc.internal.pageSize.height - 10,
+              { align: 'right' }
+            );
+          }
+
+          // Save the PDF
+          const fileName = `Shyam_Traders_Catalog_${new Date().toISOString().split('T')[0]}.pdf`;
+          doc.save(fileName);
+
+          console.log('PDF generated successfully');
+
+        } catch (error) {
+          console.error('Error generating PDF:', error);
+          
+          // Fallback: Create a simple PDF without autoTable
+          try {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.setFontSize(20);
+            doc.text('Shyam Traders', 20, 20);
+            doc.setFontSize(12);
+            doc.text('Product Catalogue', 20, 30);
+            doc.text('Phone: 9999651068', 20, 40);
+            doc.text('Address: L145, Gali number 5, Mahipalpur Extension, New Delhi - 37', 20, 50);
+            
+            doc.text('Products:', 20, 70);
+            
+            const dataToUse = filteredProducts.length > 0 ? filteredProducts : [
+              { name: "Sample Product 1", quantity: "1L", price: 150 },
+              { name: "Sample Product 2", quantity: "500ml", price: 80 }
+            ];
+            
+            let yPos = 80;
+            dataToUse.forEach((product, index) => {
+              if (yPos > 250) {
+                doc.addPage();
+                yPos = 20;
+              }
+              doc.text(`${index + 1}. ${product.name} - ${product.quantity} - ₹${product.price}`, 20, yPos);
+              yPos += 10;
+            });
+            
+            doc.save('Shyam_Traders_Catalog.pdf');
+            console.log('Fallback PDF generated');
+            
+          } catch (fallbackError) {
+            console.error('Fallback PDF generation failed:', fallbackError);
+            alert('Unable to generate PDF. Please try again or check your browser compatibility.');
+          }
+        } finally {
+          // Reset button
+          setTimeout(() => {
+            downloadBtn.disabled = false;
+            downloadBtn.innerHTML = `
+              <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+              Download PDF Catalog
+            `;
+          }, 1000);
+        }
+      }, 500); // Wait 500ms for libraries to load
+    }
+
+    // Add event listener for download button
+    document.getElementById('downloadPDF').addEventListener('click', downloadPDF);
 
     // Initialize
     fetchProducts();
