@@ -633,40 +633,101 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.0/jspdf.plugin.autotable.min.js"></script>
   <script>
-    // Sample organized product data - replace with your actual data structure
-    const organizedProducts = {
-      "CLEANING_LIQUIDS": [
-        { "id": 1, "name": "White Floor Cleaner", "quantity": "5 Litre", "price": "80/90/-" },
-        { "id": 6, "name": "Black Floor Cleaner", "quantity": "5 Litre", "price": "250/-" },
-        { "id": 2, "name": "Toilet Cleaner", "quantity": "5 Litre", "price": "240/-" },
-        { "id": 7, "name": "White / Red Harpic", "quantity": "5 litre", "price": "380/-" },
-        { "id": 3, "name": "Glass Cleaner", "quantity": "5 Litre", "price": "250/-" },
-        { "id": 4, "name": "Multipurpose Liquid", "quantity": "5 Litre", "price": "250/-" },
-        { "id": 10, "name": "Lyzol / P2", "quantity": "5 litre", "price": "350/550/-" }
-      ],
-      "PERSONAL_CARE_LIQUIDS": [
-        { "id": 5, "name": "Handwash", "quantity": "5 Litre", "price": "250/350/-" },
-        { "id": 8, "name": "Shampoo, Shower Gel, Body Lotion", "quantity": "5 litre", "price": "450/650/-" }
-      ],
-      "AIR_FRESHENERS": [
-        { "id": 9, "name": "Room Freshener", "quantity": "5 litre", "price": "840/1250/-" },
-        { "id": 21, "name": "Odonil Jali", "quantity": "1 pc", "price": "30/-" },
-        { "id": 21, "name": "Air Pocket", "quantity": "1 pc", "price": "65/-" },
-        { "id": 21, "name": "Diffuser Oil (500ml)", "quantity": "1 pc", "price": "1050/1150/-" },
-        { "id": 21, "name": "Napthalene Balls", "quantity": "1 pack", "price": "220/-" }
-      ],
-      "GARBAGE_BAGS": [
-        { "id": 11, "name": "Garbage Bag - Red, Blue, Green, Yellow", "quantity": "1 kg", "price": "110/-" },
-        { "id": 12, "name": "Garbage Bag - Black Small/Big", "quantity": "1 kg", "price": "88/-" },
-        { "id": 12, "name": "Garbage 17*23 Roll", "quantity": "1 Pack", "price": "35/60/-" }
-      ],
-      "SOAPS": [
-        { "id": 18, "name": "Glycerin Soap/ White soap", "quantity": "1 pc", "price": "2.40/-" },
-        { "id": 18, "name": "Medimix", "quantity": "1 pc", "price": "3.66/-" }
-      ]
+    const apiUrl = 'https://api.jsonbin.io/v3/b/68616fcf8a456b7966b817bd/latest';
+
+    const headers = {
+      'X-Master-Key': '<YOUR_API_KEY>',
+      'X-Access-Key': '<YOUR_ACCESS_KEY>',
+      'X-Bin-Meta': 'false'
     };
 
-    let filteredProducts = { ...organizedProducts };
+    let organizedProducts = {};
+    let filteredProducts = {};
+
+    async function fetchProducts() {
+      try {
+        const response = await fetch(apiUrl, { headers });
+        const data = await response.json();
+        
+        // Check if data is already organized or needs to be organized
+        if (Array.isArray(data)) {
+          // If it's an array, organize it (fallback for flat structure)
+          organizedProducts = organizeProductsFromArray(data);
+        } else {
+          // If it's already organized as an object
+          organizedProducts = data;
+        }
+        
+        filteredProducts = { ...organizedProducts };
+        renderCategories();
+        
+      } catch (error) {
+        console.error('Error fetching product data:', error);
+        document.getElementById('productCategories').innerHTML =
+          `<div style="text-align:center;color:#dc2626;font-weight:600;padding:40px;">Failed to load product data. Please check your connection and try again.</div>`;
+      }
+    }
+
+    // Fallback function to organize flat array into categories
+    function organizeProductsFromArray(products) {
+      // This is a simplified organization - you can enhance this logic
+      const organized = {
+        "CLEANING_LIQUIDS": [],
+        "PERSONAL_CARE_LIQUIDS": [],
+        "AIR_FRESHENERS": [],
+        "GARBAGE_BAGS": [],
+        "CLEANING_TOOLS": [],
+        "BROOMS": [],
+        "PROTECTIVE_WEAR": [],
+        "SOAPS": [],
+        "PAPER_PRODUCTS": [],
+        "FOOD_SERVICE_SUPPLIES": [],
+        "BEVERAGES_AND_CONDIMENTS": [],
+        "GUEST_AMENITIES": [],
+        "MISCELLANEOUS": []
+      };
+
+      products.forEach(product => {
+        const name = product.name.toLowerCase();
+        
+        if (name.includes('floor cleaner') || name.includes('toilet cleaner') || name.includes('glass cleaner') || name.includes('harpic') || name.includes('multipurpose') || name.includes('lyzol')) {
+          organized.CLEANING_LIQUIDS.push(product);
+        } else if (name.includes('handwash') || name.includes('shampoo') || name.includes('shower gel') || name.includes('body lotion')) {
+          organized.PERSONAL_CARE_LIQUIDS.push(product);
+        } else if (name.includes('room freshener') || name.includes('odonil') || name.includes('air pocket') || name.includes('diffuser') || name.includes('napthalene')) {
+          organized.AIR_FRESHENERS.push(product);
+        } else if (name.includes('garbage bag') || name.includes('garbage') && name.includes('roll')) {
+          organized.GARBAGE_BAGS.push(product);
+        } else if (name.includes('poccha') || name.includes('duster') || name.includes('juna') || name.includes('brush') || name.includes('wiper') || name.includes('mop')) {
+          organized.CLEANING_TOOLS.push(product);
+        } else if (name.includes('broom') || name.includes('feather brush')) {
+          organized.BROOMS.push(product);
+        } else if (name.includes('gloves') || name.includes('cap') || name.includes('apron')) {
+          organized.PROTECTIVE_WEAR.push(product);
+        } else if (name.includes('soap') || name.includes('medimix')) {
+          organized.SOAPS.push(product);
+        } else if (name.includes('tissue') || name.includes('napkin') || name.includes('toilet roll') || name.includes('dolly paper')) {
+          organized.PAPER_PRODUCTS.push(product);
+        } else if (name.includes('tray mat') || name.includes('foil') || name.includes('wrap') || name.includes('spoon') || name.includes('fork') || name.includes('stirrer') || name.includes('straw')) {
+          organized.FOOD_SERVICE_SUPPLIES.push(product);
+        } else if (name.includes('tea') || name.includes('coffee') || name.includes('creamer') || name.includes('sugar') || name.includes('salt') || name.includes('pepper') || name.includes('pickle') || name.includes('jam')) {
+          organized.BEVERAGES_AND_CONDIMENTS.push(product);
+        } else if (name.includes('dental kit') || name.includes('shaving kit') || name.includes('comb') || name.includes('dnd card')) {
+          organized.GUEST_AMENITIES.push(product);
+        } else {
+          organized.MISCELLANEOUS.push(product);
+        }
+      });
+
+      // Remove empty categories
+      Object.keys(organized).forEach(key => {
+        if (organized[key].length === 0) {
+          delete organized[key];
+        }
+      });
+
+      return organized;
+    }
 
     // Category name formatting
     const categoryNames = {
