@@ -176,13 +176,39 @@
     letter-spacing: 0.05em;
   }
 
-  .table-container {
+  .category-section {
+    margin-bottom: 30px;
     background: white;
-    border-radius: 6px;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+    overflow: hidden;
+  }
+
+  .category-header {
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .category-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .category-count {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  .table-container {
     overflow-x: auto;
     overflow-y: hidden;
-    border: 1px solid #e5e5e5;
-    /* Custom scrollbar styles */
     scrollbar-width: thin;
     scrollbar-color: #cbd5e0 #f1f5f9;
   }
@@ -213,22 +239,20 @@
   }
 
   th {
-    background: #e9eff5;
+    background: #f8fafc;
     color: #334155;
-    padding: 12px 8px;
+    padding: 12px 16px;
     font-weight: 600;
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     text-align: left;
     white-space: nowrap;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    border-bottom: 2px solid #e2e8f0;
   }
 
   td {
-    padding: 12px 8px;
+    padding: 12px 16px;
     border-bottom: 1px solid #f0f0f0;
     font-size: 0.9rem;
     font-weight: 400;
@@ -236,13 +260,13 @@
   }
 
   tr:hover {
-    background: #f0f4f8;
+    background: #f8fafc;
   }
 
   .serial-number {
     color: #999;
     font-weight: 500;
-    width: 90px;
+    width: 80px;
   }
 
   .product-name {
@@ -255,10 +279,10 @@
     background: #e2e8f0;
     color: #334155;
     font-weight: 600;
-    padding: 4px 8px;
-    border-radius: 4px;
+    padding: 4px 10px;
+    border-radius: 6px;
     display: inline-block;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 
   .price {
@@ -309,201 +333,201 @@
     color: #999;
   }
 
-    .contact-form-section {
-      background: white;
-      border: 1px solid #e5e5e5;
-      border-radius: 6px;
-      padding: 25px;
-      margin-bottom: 30px;
-    }
+  .contact-form-section {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 25px;
+    margin-bottom: 30px;
+  }
 
-    .form-header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+  .form-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
 
-    .form-header h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #1a1a1a;
-      margin-bottom: 6px;
-    }
+  .form-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+  }
 
-    .form-header p {
-      font-size: 0.9rem;
-      color: #666;
-    }
+  .form-header p {
+    font-size: 0.9rem;
+    color: #666;
+  }
 
-    .contact-form {
-      max-width: 500px;
-      margin: 0 auto;
-    }
+  .contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+  }
 
+  .form-group {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .form-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #d1d1d1;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: border-color 0.2s ease;
+    background: white;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: #666;
+  }
+
+  .form-input::placeholder {
+    color: #999;
+  }
+
+  .submit-btn {
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  .submit-btn:hover {
+    background: #333;
+  }
+
+  .submit-btn:active {
+    background: #000;
+  }
+
+  .btn-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .form-success {
+    background: #f0f9f0;
+    color: #2d5a2d;
+    border: 1px solid #b8e6b8;
+    border-radius: 6px;
+    padding: 12px;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .success-icon {
+    width: 16px;
+    height: 16px;
+    color: #2d5a2d;
+  }
+
+  @media (max-width: 768px) {
     .form-group {
-      display: flex;
+      flex-direction: column;
       gap: 12px;
-      align-items: flex-start;
-    }
-
-    .form-input {
-      flex: 1;
-      padding: 12px 16px;
-      border: 1px solid #d1d1d1;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      font-weight: 400;
-      transition: border-color 0.2s ease;
-      background: white;
-    }
-
-    .form-input:focus {
-      outline: none;
-      border-color: #666;
-    }
-
-    .form-input::placeholder {
-      color: #999;
     }
 
     .submit-btn {
-      background: #1a1a1a;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
+      width: 100%;
+      justify-content: center;
     }
 
-    .submit-btn:hover {
-      background: #333;
+    .scroll-hint {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .container {
+      margin: 10px;
+      border-radius: 8px;
     }
 
-    .submit-btn:active {
-      background: #000;
+    .header {
+      padding: 30px 20px 25px;
     }
 
-    .btn-icon {
-      width: 16px;
-      height: 16px;
+    .company-name {
+      font-size: 2rem;
     }
 
-    .form-success {
-      background: #f0f9f0;
-      color: #2d5a2d;
-      border: 1px solid #b8e6b8;
-      border-radius: 6px;
-      padding: 12px;
-      margin-top: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .success-icon {
-      width: 16px;
-      height: 16px;
-      color: #2d5a2d;
-    }
-
-    @media (max-width: 768px) {
-      .form-group {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .submit-btn {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .scroll-hint {
-        font-size: 0.75rem;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        margin: 10px;
-        border-radius: 8px;
-      }
-
-      .header {
-        padding: 30px 20px 25px;
-      }
-
-      .company-name {
-        font-size: 2rem;
-      }
-
-      .content {
-        padding: 15px;
-      }
-
-      .download-btn {
-        width: 100%;
-        justify-content: center;
-      }
-    }
-
-    .download-section {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 20px;
+    .content {
+      padding: 15px;
     }
 
     .download-btn {
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-      position: relative;
-      overflow: hidden;
+      width: 100%;
+      justify-content: center;
     }
+  }
 
-    .download-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
-      background: linear-gradient(135deg, #3730a3, #6d28d9);
-    }
+  .download-section {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
 
-    .download-btn:active {
-      transform: translateY(0);
-    }
+  .download-btn {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
 
-    .download-btn:disabled {
-      background: #94a3b8;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
+  .download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+    background: linear-gradient(135deg, #3730a3, #6d28d9);
+  }
 
-    .download-icon {
-      width: 18px;
-      height: 18px;
-      transition: transform 0.3s ease;
-    }
+  .download-btn:active {
+    transform: translateY(0);
+  }
 
-    .download-btn:hover .download-icon {
-      transform: translateY(2px);
-    }
+  .download-btn:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .download-icon {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+  }
+
+  .download-btn:hover .download-icon {
+    transform: translateY(2px);
+  }
 
 </style>
 </head>
@@ -524,7 +548,6 @@
         <span class="badge">Confectionery Items</span>
         <span class="badge">Stationery Supplies</span>
         <span class="badge">Cleaning & Housekeeping Supplies</span>
-
       </div>
 
       <div class="contact-grid">
@@ -565,29 +588,10 @@
         <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
         </svg>
-        <input type="text" class="search-box" id="searchInput" placeholder="Search products by name or quantity..." onkeyup="searchProducts()"/>
+        <input type="text" class="search-box" id="searchInput" placeholder="Search products by name, category, or quantity..." onkeyup="searchProducts()"/>
       </div>
 
-      <div class="scroll-hint">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/>
-        </svg>
-        <span>Scroll horizontally to view all columns</span>
-      </div>
-
-      <div class="table-container">
-        <table id="productTable">
-          <thead>
-            <tr>
-              <th>S.No</th>
-              <th>Product Name</th>
-              <th>Quantity</th>
-              <th>Price (₹)</th>
-            </tr>
-          </thead>
-          <tbody id="productTableBody"></tbody>
-        </table>
-      </div>
+      <div id="productCategories"></div>
 
       <div class="no-results" id="noResults">
         <svg class="no-results-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -597,8 +601,7 @@
         <p>Try adjusting your search terms or browse all products</p>
       </div>
       
-      
-       <div class="contact-form-section" style="margin-top:20px">
+      <div class="contact-form-section" style="margin-top:20px">
         <div class="form-header">
           <h3>Hear From Us</h3>
           <p>Get product updates, quotes, and special offers directly in your inbox</p>
@@ -624,95 +627,141 @@
           </div>
         </form>
       </div>
-      
     </div>
-    
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.0/jspdf.plugin.autotable.min.js"></script>
   <script>
-    const apiUrl = 'https://api.jsonbin.io/v3/b/68616fcf8a456b7966b817bd/latest';
-
-    const headers = {
-      'X-Master-Key': '<YOUR_API_KEY>',
-      'X-Access-Key': '<YOUR_ACCESS_KEY>',
-      'X-Bin-Meta': 'false'
+    // Sample organized product data - replace with your actual data structure
+    const organizedProducts = {
+      "CLEANING_LIQUIDS": [
+        { "id": 1, "name": "White Floor Cleaner", "quantity": "5 Litre", "price": "80/90/-" },
+        { "id": 6, "name": "Black Floor Cleaner", "quantity": "5 Litre", "price": "250/-" },
+        { "id": 2, "name": "Toilet Cleaner", "quantity": "5 Litre", "price": "240/-" },
+        { "id": 7, "name": "White / Red Harpic", "quantity": "5 litre", "price": "380/-" },
+        { "id": 3, "name": "Glass Cleaner", "quantity": "5 Litre", "price": "250/-" },
+        { "id": 4, "name": "Multipurpose Liquid", "quantity": "5 Litre", "price": "250/-" },
+        { "id": 10, "name": "Lyzol / P2", "quantity": "5 litre", "price": "350/550/-" }
+      ],
+      "PERSONAL_CARE_LIQUIDS": [
+        { "id": 5, "name": "Handwash", "quantity": "5 Litre", "price": "250/350/-" },
+        { "id": 8, "name": "Shampoo, Shower Gel, Body Lotion", "quantity": "5 litre", "price": "450/650/-" }
+      ],
+      "AIR_FRESHENERS": [
+        { "id": 9, "name": "Room Freshener", "quantity": "5 litre", "price": "840/1250/-" },
+        { "id": 21, "name": "Odonil Jali", "quantity": "1 pc", "price": "30/-" },
+        { "id": 21, "name": "Air Pocket", "quantity": "1 pc", "price": "65/-" },
+        { "id": 21, "name": "Diffuser Oil (500ml)", "quantity": "1 pc", "price": "1050/1150/-" },
+        { "id": 21, "name": "Napthalene Balls", "quantity": "1 pack", "price": "220/-" }
+      ],
+      "GARBAGE_BAGS": [
+        { "id": 11, "name": "Garbage Bag - Red, Blue, Green, Yellow", "quantity": "1 kg", "price": "110/-" },
+        { "id": 12, "name": "Garbage Bag - Black Small/Big", "quantity": "1 kg", "price": "88/-" },
+        { "id": 12, "name": "Garbage 17*23 Roll", "quantity": "1 Pack", "price": "35/60/-" }
+      ],
+      "SOAPS": [
+        { "id": 18, "name": "Glycerin Soap/ White soap", "quantity": "1 pc", "price": "2.40/-" },
+        { "id": 18, "name": "Medimix", "quantity": "1 pc", "price": "3.66/-" }
+      ]
     };
 
-    let products = [];
-    let filteredProducts = [];
+    let filteredProducts = { ...organizedProducts };
 
-    async function fetchProducts() {
-      try {
-        const response = await fetch(apiUrl, { headers });
-        const data = await response.json();
-        products = data;
-        filteredProducts = [...products];
+    // Category name formatting
+    const categoryNames = {
+      "CLEANING_LIQUIDS": "Cleaning Liquids",
+      "PERSONAL_CARE_LIQUIDS": "Personal Care Liquids", 
+      "AIR_FRESHENERS": "Air Fresheners",
+      "GARBAGE_BAGS": "Garbage Bags",
+      "CLEANING_TOOLS": "Cleaning Tools",
+      "BROOMS": "Brooms",
+      "PROTECTIVE_WEAR": "Protective Wear",
+      "SOAPS": "Soaps",
+      "PAPER_PRODUCTS": "Paper Products",
+      "FOOD_SERVICE_SUPPLIES": "Food Service Supplies",
+      "BEVERAGES_AND_CONDIMENTS": "Beverages & Condiments",
+      "GUEST_AMENITIES": "Guest Amenities",
+      "MISCELLANEOUS": "Miscellaneous"
+    };
 
-        renderTable();
-        checkScrollability();
-      } catch (error) {
-        console.error('Error fetching product data:', error);
-        document.getElementById('productTableBody').innerHTML =
-          `<tr><td colspan="4" style="text-align:center;color:#dc2626;font-weight:600;">Failed to load product data. Please check your connection and try again.</td></tr>`;
-      }
-    }
+    function renderCategories() {
+      const container = document.getElementById('productCategories');
+      container.innerHTML = '';
 
-    function checkScrollability() {
-      const tableContainer = document.querySelector('.table-container');
-      const scrollHint = document.querySelector('.scroll-hint');
-      
-      if (tableContainer.scrollWidth > tableContainer.clientWidth) {
-        scrollHint.style.display = 'flex';
-      } else {
-        scrollHint.style.display = 'none';
-      }
-    }
+      Object.keys(filteredProducts).forEach(categoryKey => {
+        const products = filteredProducts[categoryKey];
+        if (products.length === 0) return;
 
-    function renderTable() {
-      const tbody = document.getElementById('productTableBody');
-      tbody.innerHTML = '';
+        const categoryDiv = document.createElement('div');
+        categoryDiv.className = 'category-section';
 
-      filteredProducts.forEach((product, index) => {
-        const row = `
-          <tr>
-            <td class="serial-number">${index + 1}</td>
-            <td class="product-name">${product.name}</td>
-            <td><span class="quantity">${product.quantity}</span></td>
-            <td class="price">₹${(product.price).toLocaleString('en-IN')}</td>
-          </tr>
+        const categoryName = categoryNames[categoryKey] || categoryKey.replace(/_/g, ' ');
+        
+        categoryDiv.innerHTML = `
+          <div class="category-header">
+            <h2 class="category-title">${categoryName}</h2>
+            <p class="category-count">${products.length} items</p>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Product Name</th>
+                  <th>Quantity</th>
+                  <th>Price (₹)</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${products.map((product, index) => `
+                  <tr>
+                    <td class="serial-number">${index + 1}</td>
+                    <td class="product-name">${product.name}</td>
+                    <td><span class="quantity">${product.quantity}</span></td>
+                    <td class="price">₹${product.price}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
         `;
-        tbody.innerHTML += row;
+
+        container.appendChild(categoryDiv);
       });
     }
 
     function searchProducts() {
       const term = document.getElementById('searchInput').value.toLowerCase();
-      filteredProducts = products.filter(p =>
-        p.name.toLowerCase().includes(term) || 
-        p.quantity.toLowerCase().includes(term)
-      );
+      filteredProducts = {};
+
+      Object.keys(organizedProducts).forEach(categoryKey => {
+        const categoryProducts = organizedProducts[categoryKey].filter(product =>
+          product.name.toLowerCase().includes(term) || 
+          product.quantity.toLowerCase().includes(term) ||
+          categoryNames[categoryKey].toLowerCase().includes(term)
+        );
+
+        if (categoryProducts.length > 0) {
+          filteredProducts[categoryKey] = categoryProducts;
+        }
+      });
 
       const noResults = document.getElementById('noResults');
-      const tableContainer = document.querySelector('.table-container');
+      const categoriesContainer = document.getElementById('productCategories');
 
-      if (filteredProducts.length === 0) {
+      if (Object.keys(filteredProducts).length === 0) {
         noResults.style.display = 'block';
-        tableContainer.style.display = 'none';
+        categoriesContainer.style.display = 'none';
       } else {
         noResults.style.display = 'none';
-        tableContainer.style.display = 'block';
+        categoriesContainer.style.display = 'block';
       }
 
-      renderTable();
-      checkScrollability();
+      renderCategories();
     }
 
-    // Handle window resize to check scrollability
-    window.addEventListener('resize', checkScrollability);
-
-    // PDF Download functionality
+    // PDF Download with improved layout
     function downloadPDF() {
       const downloadBtn = document.getElementById('downloadPDF');
       downloadBtn.disabled = true;
@@ -723,93 +772,116 @@
         Generating PDF...
       `;
 
-      // Wait a bit to ensure libraries are loaded
       setTimeout(() => {
         try {
-          // Check if jsPDF is available
-          if (typeof window.jspdf === 'undefined') {
-            throw new Error('jsPDF library not loaded');
-          }
-
           const { jsPDF } = window.jspdf;
           const doc = new jsPDF();
 
-          // Add company header
-          doc.setFontSize(24);
+          // Header
+          doc.setFontSize(20);
           doc.setFont('helvetica', 'bold');
-          doc.text('Shyam Traders', 20, 25);
+          doc.text('Shyam Traders', 15, 20);
           
           doc.setFontSize(10);
           doc.setFont('helvetica', 'normal');
-          doc.text('Product Catalogue', 20, 32);
+          doc.text('Product Catalogue', 15, 28);
+          doc.text('Phone: 9999651068 | Address: L145, Gali number 5, Mahipalpur Extension, New Delhi - 37', 15, 34);
           
-          // Add contact info
-          doc.setFontSize(9);
-          doc.text('Phone: 9999651068', 20, 42);
-          doc.text('Address: L145, Gali number 5, Mahipalpur Extension, New Delhi - 37', 20, 48);
-          
-          // Add a line separator
-          doc.setLineWidth(0.5);
-          doc.line(20, 55, 190, 55);
+          // Line separator
+          doc.setLineWidth(0.3);
+          doc.line(15, 40, 195, 40);
 
-          // Create sample data if products aren't loaded yet
-          const dataToUse = filteredProducts.length > 0 ? filteredProducts : [
-            { name: "Sample Product 1", quantity: "1L", price: 150 },
-            { name: "Sample Product 2", quantity: "500ml", price: 80 },
-            { name: "Sample Product 3", quantity: "2L", price: 300 }
-          ];
+          let yPosition = 48;
+          let serialNumber = 1;
 
-          // Prepare table data
-          const tableData = dataToUse.map((product, index) => [
-            index + 1,
-            product.name,
-            product.quantity,
-            `${(product.price)}`
-          ]);
+          // Process each category
+          Object.keys(filteredProducts).forEach((categoryKey, categoryIndex) => {
+            const products = filteredProducts[categoryKey];
+            if (products.length === 0) return;
 
-          // Add table using autoTable
-          doc.autoTable({
-            head: [['S.No', 'Product Name', 'Quantity', 'Price (₹)']],
-            body: tableData,
-            startY: 65,
-            styles: {
-              fontSize: 9,
-              cellPadding: 4,
-              overflow: 'linebreak',
-              halign: 'left'
-            },
-            headStyles: {
-              fillColor: [233, 239, 245],
-              textColor: [51, 65, 85],
-              fontStyle: 'bold',
-              fontSize: 9
-            },
-            columnStyles: {
-              0: { width: 20, halign: 'center' },
-              1: { width: 80 },
-              2: { width: 30, halign: 'center' },
-              3: { width: 35, halign: 'right' }
-            },
-            alternateRowStyles: {
-              fillColor: [248, 250, 252]
-            },
-            margin: { left: 20, right: 20 }
+            const categoryName = categoryNames[categoryKey] || categoryKey.replace(/_/g, ' ');
+
+            // Check if we need a new page for category header
+            if (yPosition > 250) {
+              doc.addPage();
+              yPosition = 20;
+            }
+
+            // Category header
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'bold');
+            doc.setFillColor(240, 240, 240);
+            doc.rect(15, yPosition - 4, 180, 12, 'F');
+            doc.setTextColor(0, 0, 0);
+            doc.text(categoryName, 17, yPosition + 3);
+            yPosition += 15;
+
+            // Prepare table data for this category
+            const tableData = products.map((product) => [
+              serialNumber++,
+              product.name,
+              product.quantity,
+              `₹${product.price}`
+            ]);
+
+            // Add table using autoTable with optimized settings
+            doc.autoTable({
+              head: [['S.No', 'Product Name', 'Quantity', 'Price']],
+              body: tableData,
+              startY: yPosition,
+              styles: {
+                fontSize: 9,
+                cellPadding: 2,
+                overflow: 'linebreak',
+                halign: 'left',
+                lineColor: [200, 200, 200],
+                lineWidth: 0.1
+              },
+              headStyles: {
+                fillColor: [245, 245, 245],
+                textColor: [0, 0, 0],
+                fontStyle: 'bold',
+                fontSize: 9
+              },
+              columnStyles: {
+                0: { width: 15, halign: 'center' },
+                1: { width: 90 },
+                2: { width: 25, halign: 'center' },
+                3: { width: 25, halign: 'right' }
+              },
+              alternateRowStyles: {
+                fillColor: [252, 252, 252]
+              },
+              margin: { left: 15, right: 15 },
+              theme: 'grid',
+              didDrawPage: function (data) {
+                yPosition = data.cursor.y;
+              }
+            });
+
+            yPosition = doc.lastAutoTable.finalY + 10;
           });
 
-          // Add footer
+          // Add footer to all pages
           const pageCount = doc.internal.getNumberOfPages();
           for (let i = 1; i <= pageCount; i++) {
             doc.setPage(i);
-            doc.setFontSize(8);
-            doc.setTextColor(128);
+            doc.setFontSize(7);
+            doc.setTextColor(100);
             doc.text(
-              `Generated on ${new Date().toLocaleDateString('en-IN')} | Page ${i} of ${pageCount}`,
-              20,
+              `Generated on ${new Date().toLocaleDateString('en-IN')}`,
+              15,
               doc.internal.pageSize.height - 10
             );
             doc.text(
-              'Shyam Traders - Your trusted supplier',
-              doc.internal.pageSize.width - 20,
+              `Page ${i} of ${pageCount}`,
+              doc.internal.pageSize.width / 2,
+              doc.internal.pageSize.height - 10,
+              { align: 'center' }
+            );
+            doc.text(
+              'Shyam Traders',
+              doc.internal.pageSize.width - 15,
               doc.internal.pageSize.height - 10,
               { align: 'right' }
             );
@@ -819,47 +891,9 @@
           const fileName = `Shyam_Traders_Catalog_${new Date().toISOString().split('T')[0]}.pdf`;
           doc.save(fileName);
 
-          console.log('PDF generated successfully');
-
         } catch (error) {
           console.error('Error generating PDF:', error);
-          
-          // Fallback: Create a simple PDF without autoTable
-          try {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            
-            doc.setFontSize(20);
-            doc.text('Shyam Traders', 20, 20);
-            doc.setFontSize(12);
-            doc.text('Product Catalogue', 20, 30);
-            doc.text('Phone: 9999651068', 20, 40);
-            doc.text('Address: L145, Gali number 5, Mahipalpur Extension, New Delhi - 37', 20, 50);
-            
-            doc.text('Products:', 20, 70);
-            
-            const dataToUse = filteredProducts.length > 0 ? filteredProducts : [
-              { name: "Sample Product 1", quantity: "1L", price: 150 },
-              { name: "Sample Product 2", quantity: "500ml", price: 80 }
-            ];
-            
-            let yPos = 80;
-            dataToUse.forEach((product, index) => {
-              if (yPos > 250) {
-                doc.addPage();
-                yPos = 20;
-              }
-              doc.text(`${index + 1}. ${product.name} - ${product.quantity} - ₹${product.price}`, 20, yPos);
-              yPos += 10;
-            });
-            
-            doc.save('Shyam_Traders_Catalog.pdf');
-            console.log('Fallback PDF generated');
-            
-          } catch (fallbackError) {
-            console.error('Fallback PDF generation failed:', fallbackError);
-            alert('Unable to generate PDF. Please try again or check your browser compatibility.');
-          }
+          alert('Unable to generate PDF. Please try again.');
         } finally {
           // Reset button
           setTimeout(() => {
@@ -872,14 +906,11 @@
             `;
           }, 1000);
         }
-      }, 500); // Wait 500ms for libraries to load
+      }, 500);
     }
 
     // Add event listener for download button
     document.getElementById('downloadPDF').addEventListener('click', downloadPDF);
 
-    // Initialize
-    fetchProducts();
-  </script>
-</body>
-</html>
+    // Initialize the page
+    renderCategories();
