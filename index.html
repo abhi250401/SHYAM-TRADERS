@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shyam Traders - Product Catalogue</title>
+  <title>Poonam Enterprises - Product Catalogue</title>
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -232,7 +232,82 @@
     background: #94a3b8;
   }
 
-  table {
+  /* Updated table styles for consistent column alignment */
+table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  table-layout: fixed; /* This ensures consistent column widths */
+}
+
+th {
+  background: #f8fafc;
+  color: #334155;
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+  border-bottom: 2px solid #e2e8f0;
+  vertical-align: top; /* Align content to top */
+}
+
+/* Set specific column widths */
+th:nth-child(1) { width: 60px; }   /* S.No */
+th:nth-child(2) { width: 50%; }    /* Product Name */
+th:nth-child(3) { width: 120px; }  /* Quantity */
+th:nth-child(4) { width: 100px; }  /* Price */
+
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  vertical-align: top; /* Align all cell content to top */
+  word-wrap: break-word; /* Allow long words to break */
+  overflow-wrap: break-word; /* Modern browsers */
+}
+
+tr:hover {
+  background: #f8fafc;
+}
+
+.serial-number {
+  color: #999;
+  font-weight: 500;
+  text-align: center;
+}
+
+.product-name {
+  color: #1a1a1a;
+  font-weight: 500;
+  line-height: 1.4; /* Better spacing for multi-line text */
+  word-break: break-word; /* Break long product names */
+  hyphens: auto; /* Add hyphens for better readability */
+}
+
+.quantity {
+  background: #e2e8f0;
+  color: #334155;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
+  font-size: 0.8rem;
+  white-space: nowrap; /* Prevent quantity from wrapping */
+}
+
+.price {
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-block;
+  text-align: right;
+  white-space: nowrap; /* Prevent price from wrapping */
+}
+
+  /* table {
     width: 100%;
     min-width: 600px;
     border-collapse: collapse;
@@ -289,7 +364,7 @@
     color: #0f172a;
     font-weight: 600;
     font-size: 0.95rem;
-  }
+  } */
 
   .scroll-hint {
     display: flex;
@@ -557,7 +632,7 @@
           </svg>
           <div class="contact-text">
             <strong>Phone:</strong><br>
-            9999651068
+            9999651068 - (Amrender Sharma)
           </div>
         </div>
         
@@ -771,7 +846,7 @@
                   <th>S.No</th>
                   <th>Product Name</th>
                   <th>Quantity</th>
-                  <th>Price (₹)</th>
+                  <th>Price (In Rs.)</th>
                 </tr>
               </thead>
               <tbody>
@@ -780,7 +855,7 @@
                     <td class="serial-number">${index + 1}</td>
                     <td class="product-name">${product.name}</td>
                     <td><span class="quantity">${product.quantity}</span></td>
-                    <td class="price">₹${product.price}</td>
+                    <td class="price">${product.price}</td>
                   </tr>
                 `).join('')}
               </tbody>
@@ -823,155 +898,284 @@
     }
 
     // PDF Download with improved layout
+    // function downloadPDF() {
+    //   const downloadBtn = document.getElementById('downloadPDF');
+    //   downloadBtn.disabled = true;
+    //   downloadBtn.innerHTML = `
+    //     <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    //       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+    //     </svg>
+    //     Generating PDF...
+    //   `;
+
+    //   setTimeout(() => {
+    //     try {
+    //       const { jsPDF } = window.jspdf;
+    //       const doc = new jsPDF();
+
+    //       // Header
+    //       doc.setFontSize(20);
+    //       doc.setFont('helvetica', 'bold');
+    //       doc.text('Shyam Traders', 15, 20);
+          
+    //       doc.setFontSize(10);
+    //       doc.setFont('helvetica', 'normal');
+    //       doc.text('Product Catalogue', 15, 28);
+    //       doc.text('Phone: 9999651068 | Address: L145, Gali number 5, Mahipalpur Extension, New Delhi - 37', 15, 34);
+          
+    //       // Line separator
+    //       doc.setLineWidth(0.3);
+    //       doc.line(15, 40, 195, 40);
+
+    //       let yPosition = 48;
+    //       let serialNumber = 1;
+
+    //       // Process each category
+    //       Object.keys(filteredProducts).forEach((categoryKey, categoryIndex) => {
+    //         const products = filteredProducts[categoryKey];
+    //         if (products.length === 0) return;
+
+    //         const categoryName = categoryNames[categoryKey] || categoryKey.replace(/_/g, ' ');
+
+    //         // Check if we need a new page for category header
+    //         if (yPosition > 250) {
+    //           doc.addPage();
+    //           yPosition = 20;
+    //         }
+
+    //         // Category header
+    //         doc.setFontSize(12);
+    //         doc.setFont('helvetica', 'bold');
+    //         doc.setFillColor(240, 240, 240);
+    //         doc.rect(15, yPosition - 4, 180, 12, 'F');
+    //         doc.setTextColor(0, 0, 0);
+    //         doc.text(categoryName, 17, yPosition + 3);
+    //         yPosition += 15;
+
+    //         // Prepare table data for this category
+    //         const tableData = products.map((product) => [
+    //           serialNumber++,
+    //           product.name,
+    //           product.quantity,
+    //           `${product.price}`
+    //         ]);
+
+    //         // Add table using autoTable with optimized settings
+    //         doc.autoTable({
+    //           head: [['S.No', 'Product Name', 'Quantity', 'Price (In Rs.)']],
+    //           body: tableData,
+    //           startY: yPosition,
+    //           styles: {
+    //             fontSize: 9,
+    //             cellPadding: 2,
+    //             overflow: 'linebreak',
+    //             halign: 'left',
+    //             lineColor: [200, 200, 200],
+    //             lineWidth: 0.1
+    //           },
+    //           headStyles: {
+    //             fillColor: [245, 245, 245],
+    //             textColor: [0, 0, 0],
+    //             fontStyle: 'bold',
+    //             fontSize: 9
+    //           },
+    //           columnStyles: {
+    //             0: { width: 15, halign: 'center' },
+    //             1: { width: 90 },
+    //             2: { width: 25, halign: 'center' },
+    //             3: { width: 25, halign: 'right' }
+    //           },
+    //           alternateRowStyles: {
+    //             fillColor: [252, 252, 252]
+    //           },
+    //           margin: { left: 15, right: 15 },
+    //           theme: 'grid',
+    //           didDrawPage: function (data) {
+    //             yPosition = data.cursor.y;
+    //           }
+    //         });
+
+    //         yPosition = doc.lastAutoTable.finalY + 10;
+    //       });
+
+    //       // Add footer to all pages
+    //       const pageCount = doc.internal.getNumberOfPages();
+    //       for (let i = 1; i <= pageCount; i++) {
+    //         doc.setPage(i);
+    //         doc.setFontSize(7);
+    //         doc.setTextColor(100);
+    //         doc.text(
+    //           `Generated on ${new Date().toLocaleDateString('en-IN')}`,
+    //           15,
+    //           doc.internal.pageSize.height - 10
+    //         );
+    //         doc.text(
+    //           `Page ${i} of ${pageCount}`,
+    //           doc.internal.pageSize.width / 2,
+    //           doc.internal.pageSize.height - 10,
+    //           { align: 'center' }
+    //         );
+    //         doc.text(
+    //           'Shyam Traders',
+    //           doc.internal.pageSize.width - 15,
+    //           doc.internal.pageSize.height - 10,
+    //           { align: 'right' }
+    //         );
+    //       }
+
+    //       // Save the PDF
+    //       const fileName = `Shyam_Traders_Catalog_${new Date().toISOString().split('T')[0]}.pdf`;
+    //       doc.save(fileName);
+
+    //     } catch (error) {
+    //       console.error('Error generating PDF:', error);
+    //       alert('Unable to generate PDF. Please try again.');
+    //     } finally {
+    //       // Reset button
+    //       setTimeout(() => {
+    //         downloadBtn.disabled = false;
+    //         downloadBtn.innerHTML = `
+    //           <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    //             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+    //           </svg>
+    //           Download PDF Catalog
+    //         `;
+    //       }, 1000);
+    //     }
+    //   }, 500);
+    // }
     function downloadPDF() {
-      const downloadBtn = document.getElementById('downloadPDF');
-      downloadBtn.disabled = true;
-      downloadBtn.innerHTML = `
-        <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-        </svg>
-        Generating PDF...
-      `;
+  const downloadBtn = document.getElementById('downloadPDF');
+  downloadBtn.disabled = true;
+  downloadBtn.innerHTML = `
+    <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+    </svg>
+    Generating PDF...
+  `;
 
+  setTimeout(() => {
+    try {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Header
+      doc.setFontSize(20);
+      doc.setFont('helvetica', 'bold');
+      doc.text('Poonam Enterprises', 15, 20);
+      
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      doc.text('Product Catalogue', 15, 28);
+      doc.text('Phone: 9999651068 - (Amrender Sharma) | Address: L145, Gali number 5, Mahipalpur Extension, New Delhi - 37', 15, 34);
+      
+      // Line separator
+      doc.setLineWidth(0.3);
+      doc.line(15, 40, 195, 40);
+
+      let yPosition = 48;
+      let serialNumber = 1;
+
+      // Flatten all products into a single array (remove category grouping)
+      const allProducts = [];
+      Object.keys(filteredProducts).forEach((categoryKey) => {
+        const products = filteredProducts[categoryKey];
+        allProducts.push(...products);
+      });
+
+      // Prepare table data for all products
+      const tableData = allProducts.map((product) => [
+        serialNumber++,
+        product.name,
+        product.quantity,
+        `${product.price}`
+      ]);
+
+      // Add single table with all products
+      doc.autoTable({
+        head: [['S.No', 'Product Name', 'Quantity', 'Price (In Rs.)']],
+        body: tableData,
+        startY: yPosition,
+        styles: {
+          fontSize: 9,
+          cellPadding: 2,
+          overflow: 'linebreak',
+          halign: 'left',
+          lineColor: [200, 200, 200],
+          lineWidth: 0.1
+        },
+        headStyles: {
+          fillColor: [245, 245, 245],
+          textColor: [0, 0, 0],
+          fontStyle: 'bold',
+          fontSize: 9
+        },
+        columnStyles: {
+          0: { width: 15, halign: 'center' },
+          1: { width: 100, cellWidth: 'wrap' },
+          2: { width: 30, halign: 'center' },
+          3: { width: 30, halign: 'right' }
+        },
+        alternateRowStyles: {
+          fillColor: [252, 252, 252]
+        },
+        margin: { left: 15, right: 15 },
+        theme: 'grid'
+      });
+
+      // Add footer to all pages
+      const pageCount = doc.internal.getNumberOfPages();
+      for (let i = 1; i <= pageCount; i++) {
+        doc.setPage(i);
+        doc.setFontSize(7);
+        doc.setTextColor(100);
+        doc.text(
+          `Generated on ${new Date().toLocaleDateString('en-IN')}`,
+          15,
+          doc.internal.pageSize.height - 10
+        );
+        doc.text(
+          `Page ${i} of ${pageCount}`,
+          doc.internal.pageSize.width / 2,
+          doc.internal.pageSize.height - 10,
+          { align: 'center' }
+        );
+        doc.text(
+          'Shyam Traders',
+          doc.internal.pageSize.width - 15,
+          doc.internal.pageSize.height - 10,
+          { align: 'right' }
+        );
+      }
+
+      // Save the PDF
+      const fileName = `Shyam_Traders_Catalog_${new Date().toISOString().split('T')[0]}.pdf`;
+      doc.save(fileName);
+
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      alert('Unable to generate PDF. Please try again.');
+    } finally {
+      // Reset button
       setTimeout(() => {
-        try {
-          const { jsPDF } = window.jspdf;
-          const doc = new jsPDF();
-
-          // Header
-          doc.setFontSize(20);
-          doc.setFont('helvetica', 'bold');
-          doc.text('Shyam Traders', 15, 20);
-          
-          doc.setFontSize(10);
-          doc.setFont('helvetica', 'normal');
-          doc.text('Product Catalogue', 15, 28);
-          doc.text('Phone: 9999651068 | Address: L145, Gali number 5, Mahipalpur Extension, New Delhi - 37', 15, 34);
-          
-          // Line separator
-          doc.setLineWidth(0.3);
-          doc.line(15, 40, 195, 40);
-
-          let yPosition = 48;
-          let serialNumber = 1;
-
-          // Process each category
-          Object.keys(filteredProducts).forEach((categoryKey, categoryIndex) => {
-            const products = filteredProducts[categoryKey];
-            if (products.length === 0) return;
-
-            const categoryName = categoryNames[categoryKey] || categoryKey.replace(/_/g, ' ');
-
-            // Check if we need a new page for category header
-            if (yPosition > 250) {
-              doc.addPage();
-              yPosition = 20;
-            }
-
-            // Category header
-            doc.setFontSize(12);
-            doc.setFont('helvetica', 'bold');
-            doc.setFillColor(240, 240, 240);
-            doc.rect(15, yPosition - 4, 180, 12, 'F');
-            doc.setTextColor(0, 0, 0);
-            doc.text(categoryName, 17, yPosition + 3);
-            yPosition += 15;
-
-            // Prepare table data for this category
-            const tableData = products.map((product) => [
-              serialNumber++,
-              product.name,
-              product.quantity,
-              `₹${product.price}`
-            ]);
-
-            // Add table using autoTable with optimized settings
-            doc.autoTable({
-              head: [['S.No', 'Product Name', 'Quantity', 'Price']],
-              body: tableData,
-              startY: yPosition,
-              styles: {
-                fontSize: 9,
-                cellPadding: 2,
-                overflow: 'linebreak',
-                halign: 'left',
-                lineColor: [200, 200, 200],
-                lineWidth: 0.1
-              },
-              headStyles: {
-                fillColor: [245, 245, 245],
-                textColor: [0, 0, 0],
-                fontStyle: 'bold',
-                fontSize: 9
-              },
-              columnStyles: {
-                0: { width: 15, halign: 'center' },
-                1: { width: 90 },
-                2: { width: 25, halign: 'center' },
-                3: { width: 25, halign: 'right' }
-              },
-              alternateRowStyles: {
-                fillColor: [252, 252, 252]
-              },
-              margin: { left: 15, right: 15 },
-              theme: 'grid',
-              didDrawPage: function (data) {
-                yPosition = data.cursor.y;
-              }
-            });
-
-            yPosition = doc.lastAutoTable.finalY + 10;
-          });
-
-          // Add footer to all pages
-          const pageCount = doc.internal.getNumberOfPages();
-          for (let i = 1; i <= pageCount; i++) {
-            doc.setPage(i);
-            doc.setFontSize(7);
-            doc.setTextColor(100);
-            doc.text(
-              `Generated on ${new Date().toLocaleDateString('en-IN')}`,
-              15,
-              doc.internal.pageSize.height - 10
-            );
-            doc.text(
-              `Page ${i} of ${pageCount}`,
-              doc.internal.pageSize.width / 2,
-              doc.internal.pageSize.height - 10,
-              { align: 'center' }
-            );
-            doc.text(
-              'Shyam Traders',
-              doc.internal.pageSize.width - 15,
-              doc.internal.pageSize.height - 10,
-              { align: 'right' }
-            );
-          }
-
-          // Save the PDF
-          const fileName = `Shyam_Traders_Catalog_${new Date().toISOString().split('T')[0]}.pdf`;
-          doc.save(fileName);
-
-        } catch (error) {
-          console.error('Error generating PDF:', error);
-          alert('Unable to generate PDF. Please try again.');
-        } finally {
-          // Reset button
-          setTimeout(() => {
-            downloadBtn.disabled = false;
-            downloadBtn.innerHTML = `
-              <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-              </svg>
-              Download PDF Catalog
-            `;
-          }, 1000);
-        }
-      }, 500);
+        downloadBtn.disabled = false;
+        downloadBtn.innerHTML = `
+          <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          Download PDF Catalog
+        `;
+      }, 1000);
     }
+  }, 500);
+}
 
     // Add event listener for download button
     document.getElementById('downloadPDF').addEventListener('click', downloadPDF);
 
     // Initialize the page
     renderCategories();
+    fetchProducts();
+    </script>
+</body>
+</html>
