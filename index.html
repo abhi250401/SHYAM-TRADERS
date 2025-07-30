@@ -1,12 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Poonam Enterprises - Product Catalogue</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
     :root {
       --bg-light: #f8fafc;
@@ -443,11 +444,119 @@
       .container { margin: 10px; border-radius: 8px; }
       .stats { grid-template-columns: 1fr; }
     }
+    /* ... your theming CSS ... */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    :root {
+      --bg-light: #f8fafc;
+      --bg-container: #ffffff;
+      --border-color: #e2e8f0;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --accent-color: #0284c7;
+      --accent-color-dark: #0369a1;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-light);
+      min-height: 100vh;
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      background: var(--bg-container);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+    /* ... rest of your container/header/company CSS ... */
+
+    /* Product table image cell */
+    .product-img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      margin-right: 10px;
+      vertical-align: middle;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+      background: #f1f5f9;
+    }
+    .product-name-cell {
+      display: flex;
+      align-items: center;
+    }
+    .view-link {
+      margin-left: 14px;
+      color: var(--accent-color);
+      font-size: 0.89rem;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+
+    /* Modal for detail view */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(17, 24, 39, 0.38);
+      justify-content: center; align-items: center;
+    }
+    .modal-bg.active { display: flex; }
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 16px 32px rgba(0,0,0,0.10);
+      padding: 2.1rem 1.3rem 1.4rem;
+      max-width: 92vw;
+      width: 340px;
+      position: relative;
+      text-align: center;
+      border: 1px solid #e2e8f0;
+    }
+    .modal-content img {
+      width: 90px; height: 90px;
+      object-fit: contain;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      border: 1px solid #e2e8f0;
+      background: #f1f5f9;
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      position: absolute;
+      right: 10px; top: 10px;
+      font-size: 1.6em;
+      color: #64748b;
+      cursor: pointer;
+      line-height: 1;
+    }
+    /* Responsive fix for mobile */
+    @media (max-width: 768px) {
+      .container { margin: 20px; }
+      .content { padding: 12px; }
+      th, td { padding: 9px 5px; font-size: 0.88em;}
+      .category-header {padding:10px;}
+    }
+    @media (max-width: 480px) {
+      .container { margin: 10px; border-radius: 8px; }
+      th, td { padding: 7px 3px; font-size: 0.85em;}
+      table { min-width: 0; width: 100%; }
+      .modal-content { width: 98vw; max-width: 340px;}
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="header">
+     <div class="header">
       <h1 class="company-name">Poonam Enterprises</h1>
       <p class="tagline">
 Your trusted supplier of high-quality cleaning and maintenance products, including liquid soaps, floor cleaners, disposable items, and all Taski, Diversey, and Virgo cleaning products. We also offer housekeeping materials, pickles, jams, shaving kits, hotel supplies, and bathroom essentials to cater to both residential and commercial needs.
@@ -486,8 +595,9 @@ Your trusted supplier of high-quality cleaning and maintenance products, includi
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="content">
+      <div class="content">
         <div class="top-controls">
             <div class="search-container">
                 <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
@@ -499,7 +609,7 @@ Your trusted supplier of high-quality cleaning and maintenance products, includi
             </button>
       </div>
 
-      <div class="stats" id="statsContainer">
+        <div class="stats" id="statsContainer">
         <!-- Stats will be loaded here by JavaScript -->
       </div>
       
@@ -512,8 +622,20 @@ Your trusted supplier of high-quality cleaning and maintenance products, includi
         <h3>No Products Found</h3>
         <p>Your search returned no results. Please try a different term.</p>
       </div>
-      
-      <div class="contact-form-section">
+
+  <!-- Modal for product details -->
+  <div class="modal-bg" id="prodModal">
+    <div class="modal-content" id="modalContent">
+      <button class="modal-close" aria-label="Close" onclick="closeProductModal()">&times;</button>
+      <img  onClick="showProductModal('${encodeURIComponent(JSON.stringify(p))}')" src="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg" alt="Product image" id="modalImg"
+           onerror="this.onerror=null;">
+      <h2 id="modalName" style="font-size:1.26rem;font-weight:700;margin-top:2px;"></h2>
+      <div id="modalQty" style="color:#777; margin: 8px 0 14px; font-size:1em;"></div>
+      <div id="modalPrice" style="font-size:1.2em;font-weight:600;"></div>
+    </div>
+  </div>
+
+     <div class="contact-form-section">
         <div class="form-header">
           <h3>Request Information</h3>
           <p>Get product updates, quotes, and special offers directly from our team.</p>
@@ -536,12 +658,9 @@ Your trusted supplier of high-quality cleaning and maintenance products, includi
         </form>
       </div>
     </div>
-  </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
   <script>
-    // IMPORTANT: Replace with your actual JSONBin.io keys
     const apiUrl = 'https://api.jsonbin.io/v3/b/68616fcf8a456b7966b817bd/latest';
     const headers = {
       'X-Master-Key': '<YOUR_API_KEY>', // Replace with your Master Key
@@ -549,12 +668,10 @@ Your trusted supplier of high-quality cleaning and maintenance products, includi
       'X-Bin-Meta': 'false'
     };
 
-    let organizedProducts = {};
-    let filteredProducts = {};
-
+    let organizedProducts = {}, filteredProducts = {};
     const categoryNames = {
       "CLEANING_LIQUIDS": "Cleaning Liquids",
-      "PERSONAL_CARE_LIQUIDS": "Personal Care Liquids", 
+      "PERSONAL_CARE_LIQUIDS": "Personal Care Liquids",
       "AIR_FRESHENERS": "Air Fresheners",
       "GARBAGE_BAGS": "Garbage Bags",
       "CLEANING_TOOLS": "Cleaning Tools",
@@ -571,19 +688,12 @@ Your trusted supplier of high-quality cleaning and maintenance products, includi
     async function fetchProducts() {
       try {
         const response = await fetch(apiUrl, { headers });
-        if (!response.ok) {
-            throw new Error(`API request failed with status ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`API request failed (${response.status})`);
         const data = await response.json();
-        
-        organizedProducts = data && typeof data === 'object' && !Array.isArray(data) ? data : organizeProductsFromArray(data);
+        organizedProducts = data && typeof data === 'object' && !Array.isArray(data) ? data : {};
         filteredProducts = { ...organizedProducts };
-        
         renderCategories();
-        updateStats();
-
       } catch (error) {
-        console.error('Error fetching product data:', error);
         document.getElementById('productCategories').innerHTML =
           `<div style="text-align:center; color:#dc2626; font-weight:600; padding:40px; background-color:#ffe4e6; border-radius:8px;">
              Failed to load product data. Please ensure API keys are correct and try again.
@@ -591,51 +701,19 @@ Your trusted supplier of high-quality cleaning and maintenance products, includi
       }
     }
 
-    function organizeProductsFromArray(products) {
-      const organized = {};
-      Object.keys(categoryNames).forEach(key => organized[key] = []);
+    function searchProducts() {
+      const term = document.getElementById('searchInput').value.toLowerCase();
+      filteredProducts = {};
 
-      products.forEach(product => {
-        const name = product.name.toLowerCase();
-        let categorized = false;
-        if (name.includes('cleaner') || name.includes('harpic') || name.includes('lyzol')) organized.CLEANING_LIQUIDS.push(product), categorized = true;
-        else if (name.includes('handwash') || name.includes('shampoo') || name.includes('lotion')) organized.PERSONAL_CARE_LIQUIDS.push(product), categorized = true;
-        else if (name.includes('freshener') || name.includes('odonil') || name.includes('diffuser')) organized.AIR_FRESHENERS.push(product), categorized = true;
-        else if (name.includes('garbage')) organized.GARBAGE_BAGS.push(product), categorized = true;
-        else if (name.includes('duster') || name.includes('brush') || name.includes('wiper') || name.includes('mop')) organized.CLEANING_TOOLS.push(product), categorized = true;
-        else if (name.includes('broom')) organized.BROOMS.push(product), categorized = true;
-        else if (name.includes('gloves') || name.includes('cap')) organized.PROTECTIVE_WEAR.push(product), categorized = true;
-        else if (name.includes('soap') || name.includes('medimix')) organized.SOAPS.push(product), categorized = true;
-        else if (name.includes('tissue') || name.includes('napkin') || name.includes('roll')) organized.PAPER_PRODUCTS.push(product), categorized = true;
-        else if (name.includes('foil') || name.includes('wrap') || name.includes('spoon')) organized.FOOD_SERVICE_SUPPLIES.push(product), categorized = true;
-        else if (name.includes('tea') || name.includes('coffee') || name.includes('pickle') || name.includes('jam')) organized.BEVERAGES_AND_CONDIMENTS.push(product), categorized = true;
-        else if (name.includes('kit') || name.includes('comb')) organized.GUEST_AMENITIES.push(product), categorized = true;
-        
-        if (!categorized) organized.MISCELLANEOUS.push(product);
+      Object.keys(organizedProducts).forEach(categoryKey => {
+        const filtered = organizedProducts[categoryKey].filter(p =>
+          p.name.toLowerCase().includes(term) ||
+          (p.quantity && p.quantity.toLowerCase().includes(term)) ||
+          (categoryNames[categoryKey] || '').toLowerCase().includes(term)
+        );
+        if (filtered.length > 0) filteredProducts[categoryKey] = filtered;
       });
-
-      return Object.fromEntries(Object.entries(organized).filter(([_, v]) => v.length > 0));
-    }
-    
-    function updateStats() {
-        const statsContainer = document.getElementById('statsContainer');
-        const totalProducts = Object.values(organizedProducts).reduce((sum, products) => sum + products.length, 0);
-        const totalCategories = Object.keys(organizedProducts).length;
-        
-        statsContainer.innerHTML = `
-            <div class="stat">
-                <div class="stat-number">${totalProducts}</div>
-                <div class="stat-label">Total Products</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">${totalCategories}</div>
-                <div class="stat-label">Product Categories</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">Customer Support</div>
-            </div>
-        `;
+      renderCategories();
     }
 
     function renderCategories() {
@@ -647,13 +725,24 @@ Your trusted supplier of high-quality cleaning and maintenance products, includi
         if (products.length === 0) return;
 
         const categoryName = categoryNames[categoryKey] || categoryKey.replace(/_/g, ' ');
-        const tableRows = products.map((p, i) => `
+        const tableRows = products.map((p, i) => {
+          // If your API has p.image, use it. Otherwise, fallback to 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'
+          let imgSrc = (p.image && p.image.trim()) ? p.image : 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
+          return `
             <tr>
               <td class="serial-number">${i + 1}</td>
-              <td class="product-name">${p.name}</td>
+              <td>
+                <div class="product-name-cell" style="cursor:pointer" onClick="showProductModal('${encodeURIComponent(JSON.stringify(p))}')" >
+                  <img  class="product-img" src="${imgSrc}" alt="${p.name}"
+                    onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'>
+                  <span class="product-name" >${p.name}</span>
+                </div>
+              </td>
               <td class="quantity">${p.quantity}</td>
               <td class="price">${p.price}</td>
-            </tr>`).join('');
+            </tr>
+          `;
+        }).join('');
 
         container.innerHTML += `
           <div class="category-section">
@@ -662,7 +751,7 @@ Your trusted supplier of high-quality cleaning and maintenance products, includi
               <table>
                 <thead>
                   <tr>
-                    <th>S.No</th><th>Product Name</th><th>Quantity</th><th>Price</th>
+                    <th>S.No</th><th>Product</th><th>Qty</th><th>Price</th>
                   </tr>
                 </thead>
                 <tbody>${tableRows}</tbody>
@@ -672,29 +761,31 @@ Your trusted supplier of high-quality cleaning and maintenance products, includi
       });
     }
 
-    function searchProducts() {
-      const term = document.getElementById('searchInput').value.toLowerCase();
-      filteredProducts = {};
-
-      Object.keys(organizedProducts).forEach(categoryKey => {
-        const filtered = organizedProducts[categoryKey].filter(p =>
-          p.name.toLowerCase().includes(term) ||
-          p.quantity.toLowerCase().includes(term) ||
-          (categoryNames[categoryKey] || '').toLowerCase().includes(term)
-        );
-        if (filtered.length > 0) {
-          filteredProducts[categoryKey] = filtered;
-        }
-      });
-      
-      const hasResults = Object.keys(filteredProducts).length > 0;
-      document.getElementById('noResults').style.display = hasResults ? 'none' : 'block';
-      document.getElementById('productCategories').style.display = hasResults ? 'block' : 'none';
-      
-      renderCategories();
+    function showProductModal(productEncoded) {
+      const p = JSON.parse(decodeURIComponent(productEncoded));
+      // Set modal data
+      let imgSrc = (p.image && p.image.trim()) ? p.image : 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
+      const modalImg = document.getElementById('modalImg');
+      modalImg.src = imgSrc;
+      modalImg.alt = p.name;
+      modalImg.onerror = function() {
+        this.onerror = null;
+        this.src = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
+      };
+      document.getElementById('modalName').innerText = p.name;
+      document.getElementById('modalQty').innerText = "Quantity: " + p.quantity;
+      document.getElementById('modalPrice').innerText = "Price: " + p.price;
+      document.getElementById('prodModal').classList.add('active');
     }
-    
- function downloadPDF() {
+    function closeProductModal() {
+      document.getElementById('prodModal').classList.remove('active');
+    }
+    document.addEventListener('keydown', function(e){ if(e.key == "Escape") closeProductModal(); });
+    document.getElementById('prodModal').addEventListener('click',e =>{
+      if(e.target === e.currentTarget) closeProductModal();
+    });
+
+     function downloadPDF() {
   const downloadBtn = document.getElementById('downloadPDF');
   downloadBtn.disabled = true;
   downloadBtn.innerHTML = `
@@ -822,9 +913,7 @@ Your trusted supplier of high-quality cleaning and maintenance products, includi
     }
   }, 500);
 }
-
-
-    document.getElementById('downloadPDF').addEventListener('click', downloadPDF);
+        document.getElementById('downloadPDF').addEventListener('click', downloadPDF);
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const form = e.target;
@@ -837,8 +926,9 @@ Your trusted supplier of high-quality cleaning and maintenance products, includi
         document.getElementById('formSuccess').style.display = 'none';
       }, 5000);
     });
-    
     fetchProducts();
   </script>
 </body>
 </html>
+
+
