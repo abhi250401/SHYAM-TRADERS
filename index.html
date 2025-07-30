@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,624 +6,462 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Poonam Enterprises - Product Catalogue</title>
   <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background: linear-gradient(to bottom, #f9fafb, #f0f2f5);
-    min-height: 100vh;
-    color: #1a1a1a;
-    line-height: 1.5;
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 30px auto;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-  }
-
-  .header {
-    background: linear-gradient(to right, #f8fafc, #eef2f7);
-    border-bottom: 1px solid #e3e8ef;
-    padding: 50px 40px 40px;
-  }
-
-  .company-name {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 10px;
-  }
-
-  .tagline {
-    color: #4a4a4a;
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
-
-  .tagline-secondary {
-    color: #607d8b;
-    font-size: 0.95rem;
-    font-weight: 500;
-    margin-bottom: 20px;
-  }
-
-  .specialty-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 20px;
-  }
-
-  .badge {
-    background: #e0ecf8;
-    color: #0f172a;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    border: none;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  }
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-    margin-top: 20px;
-  }
-
-  .contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .contact-icon {
-    width: 20px;
-    height: 20px;
-    color: #666;
-    margin-top: 2px;
-    flex-shrink: 0;
-  }
-
-  .contact-text {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #666;
-  }
-
-  .contact-text strong {
-    color: #1a1a1a;
-    font-weight: 600;
-  }
-
-  .content {
-    padding: 20px;
-  }
-
-  .search-container {
-    position: relative;
-    margin-bottom: 30px;
-  }
-
-  .search-box {
-    width: 100%;
-    padding: 12px 14px 12px 36px;
-    background: #ffffff;
-    border: 1px solid #cfd8dc;
-    border-radius: 6px;
-    font-size: 1rem;
-  }
-
-  .search-box:focus {
-    border-color: #0284c7;
-    box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
-    outline: none;
-  }
-
-  .search-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 16px;
-    height: 16px;
-    color: #999;
-  }
-
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 12px;
-    margin-bottom: 30px;
-  }
-
-  .stat {
-    background: #f1f5f9;
-    padding: 18px;
-    border-radius: 10px;
-    text-align: center;
-    border: 1px solid #dce3ea;
-    transition: transform 0.2s ease;
-  }
-
-  .stat:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.04);
-  }
-
-  .stat-number {
-    font-size: 1.75rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 6px;
-  }
-
-  .stat-label {
-    color: #666;
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .category-section {
-    margin-bottom: 30px;
-    background: white;
-    border-radius: 8px;
-    border: 1px solid #e5e5e5;
-    overflow: hidden;
-  }
-
-  .category-header {
-    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-    padding: 16px 20px;
-    border-bottom: 1px solid #e5e5e5;
-  }
-
-  .category-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .category-count {
-    font-size: 0.85rem;
-    color: #666;
-    font-weight: 500;
-    margin-top: 4px;
-  }
-
-  .table-container {
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: thin;
-    scrollbar-color: #cbd5e0 #f1f5f9;
-  }
-
-  .table-container::-webkit-scrollbar {
-    height: 8px;
-  }
-
-  .table-container::-webkit-scrollbar-track {
-    background: #f1f5f9;
-    border-radius: 4px;
-  }
-
-  .table-container::-webkit-scrollbar-thumb {
-    background: #cbd5e0;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-  }
-
-  .table-container::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
-  }
-
-  /* Updated table styles for consistent column alignment */
-table {
-  width: 100%;
-  min-width: 600px;
-  border-collapse: collapse;
-  table-layout: fixed; /* This ensures consistent column widths */
-}
-
-th {
-  background: #f8fafc;
-  color: #334155;
-  padding: 12px 16px;
-  font-weight: 600;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-align: left;
-  border-bottom: 2px solid #e2e8f0;
-  vertical-align: top; /* Align content to top */
-}
-
-/* Set specific column widths */
-th:nth-child(1) { width: 60px; }   /* S.No */
-th:nth-child(2) { width: 50%; }    /* Product Name */
-th:nth-child(3) { width: 120px; }  /* Quantity */
-th:nth-child(4) { width: 100px; }  /* Price */
-
-td {
-  padding: 12px 16px;
-  border-bottom: 1px solid #f0f0f0;
-  font-size: 0.9rem;
-  font-weight: 400;
-  vertical-align: top; /* Align all cell content to top */
-  word-wrap: break-word; /* Allow long words to break */
-  overflow-wrap: break-word; /* Modern browsers */
-}
-
-tr:hover {
-  background: #f8fafc;
-}
-
-.serial-number {
-  color: #999;
-  font-weight: 500;
-  text-align: center;
-}
-
-.product-name {
-  color: #1a1a1a;
-  font-weight: 500;
-  line-height: 1.4; /* Better spacing for multi-line text */
-  word-break: break-word; /* Break long product names */
-  hyphens: auto; /* Add hyphens for better readability */
-}
-
-.quantity {
-  background: #e2e8f0;
-  color: #334155;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 6px;
-  display: inline-block;
-  font-size: 0.8rem;
-  white-space: nowrap; /* Prevent quantity from wrapping */
-}
-
-.price {
-  color: #0f172a;
-  font-weight: 600;
-  font-size: 0.95rem;
-  display: inline-block;
-  text-align: right;
-  white-space: nowrap; /* Prevent price from wrapping */
-}
-
-  /* table {
-    width: 100%;
-    min-width: 600px;
-    border-collapse: collapse;
-  }
-
-  th {
-    background: #f8fafc;
-    color: #334155;
-    padding: 12px 16px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    text-align: left;
-    white-space: nowrap;
-    border-bottom: 2px solid #e2e8f0;
-  }
-
-  td {
-    padding: 12px 16px;
-    border-bottom: 1px solid #f0f0f0;
-    font-size: 0.9rem;
-    font-weight: 400;
-    white-space: nowrap;
-  }
-
-  tr:hover {
-    background: #f8fafc;
-  }
-
-  .serial-number {
-    color: #999;
-    font-weight: 500;
-    width: 80px;
-  }
-
-  .product-name {
-    color: #1a1a1a;
-    font-weight: 500;
-    min-width: 200px;
-  }
-
-  .quantity {
-    background: #e2e8f0;
-    color: #334155;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 6px;
-    display: inline-block;
-    font-size: 0.8rem;
-  }
-
-  .price {
-    color: #0f172a;
-    font-weight: 600;
-    font-size: 0.95rem;
-  } */
-
-  .scroll-hint {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 8px;
-    font-size: 0.8rem;
-    color: #666;
-    opacity: 0.8;
-  }
-
-  .scroll-hint svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  .no-results {
-    text-align: center;
-    padding: 60px 20px;
-    color: #999;
-    display: none;
-  }
-
-  .no-results-icon {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 16px;
-    color: #ddd;
-  }
-
-  .no-results h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #666;
-  }
-
-  .no-results p {
-    font-size: 0.9rem;
-    color: #999;
-  }
-
-  .contact-form-section {
-    background: white;
-    border: 1px solid #e5e5e5;
-    border-radius: 6px;
-    padding: 25px;
-    margin-bottom: 30px;
-  }
-
-  .form-header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .form-header h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 6px;
-  }
-
-  .form-header p {
-    font-size: 0.9rem;
-    color: #666;
-  }
-
-  .contact-form {
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .form-group {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-
-  .form-input {
-    flex: 1;
-    padding: 12px 16px;
-    border: 1px solid #d1d1d1;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 400;
-    transition: border-color 0.2s ease;
-    background: white;
-  }
-
-  .form-input:focus {
-    outline: none;
-    border-color: #666;
-  }
-
-  .form-input::placeholder {
-    color: #999;
-  }
-
-  .submit-btn {
-    background: #1a1a1a;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-  }
-
-  .submit-btn:hover {
-    background: #333;
-  }
-
-  .submit-btn:active {
-    background: #000;
-  }
-
-  .btn-icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  .form-success {
-    background: #f0f9f0;
-    color: #2d5a2d;
-    border: 1px solid #b8e6b8;
-    border-radius: 6px;
-    padding: 12px;
-    margin-top: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
-
-  .success-icon {
-    width: 16px;
-    height: 16px;
-    color: #2d5a2d;
-  }
-
-  @media (max-width: 768px) {
-    .form-group {
-      flex-direction: column;
-      gap: 12px;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --bg-light: #f8fafc;
+      --bg-container: #ffffff;
+      --border-color: #e2e8f0;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --accent-color: #0284c7;
+      --accent-color-dark: #0369a1;
+      --success-bg: #f0fdf4;
+      --success-text: #166534;
+      --success-border: #bbf7d0;
     }
 
-    .submit-btn {
-      width: 100%;
-      justify-content: center;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .scroll-hint {
-      font-size: 0.75rem;
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-light);
+      min-height: 100vh;
+      color: var(--text-primary);
+      line-height: 1.6;
     }
-  }
 
-  @media (max-width: 640px) {
     .container {
-      margin: 10px;
-      border-radius: 8px;
+      max-width: 1200px;
+      margin: 40px auto;
+      background: var(--bg-container);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
     }
 
     .header {
-      padding: 30px 20px 25px;
+      background: linear-gradient(to right, #fdfdff, #f7f9fc);
+      border-bottom: 1px solid var(--border-color);
+      padding: 40px;
     }
 
     .company-name {
-      font-size: 2rem;
+      font-size: 2.75rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 12px;
+      max-width: 80ch;
+    }
+    
+    .tagline-secondary {
+      color: #334155;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    
+    .specialty-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .badge {
+      background-color: #e0f2fe;
+      color: #0c4a6e;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .contact-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--accent-color);
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .contact-text {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    .contact-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
     }
 
     .content {
-      padding: 15px;
+      padding: 40px;
+    }
+
+    .top-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .search-container {
+      position: relative;
+      flex-grow: 1;
+      min-width: 300px;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 12px 16px 12px 40px;
+      background: var(--bg-container);
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .search-box:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+      outline: none;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: #94a3b8;
     }
 
     .download-btn {
-      width: 100%;
-      justify-content: center;
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
     }
-  }
+    
+    .download-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(2, 132, 199, 0.3);
+      background: var(--accent-color-dark);
+    }
 
-  .download-section {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
-  }
+    .download-btn:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
 
-  .download-btn {
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-    position: relative;
-    overflow: hidden;
-  }
+    .download-icon {
+      width: 18px;
+      height: 18px;
+    }
 
-  .download-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
-    background: linear-gradient(135deg, #3730a3, #6d28d9);
-  }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
 
-  .download-btn:active {
-    transform: translateY(0);
-  }
+    .stat {
+      background: #f1f5f9;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid #e2e8f0;
+    }
 
-  .download-btn:disabled {
-    background: #94a3b8;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-  }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
 
-  .download-icon {
-    width: 18px;
-    height: 18px;
-    transition: transform 0.3s ease;
-  }
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .category-section {
+      margin-bottom: 40px;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+    }
 
-  .download-btn:hover .download-icon {
-    transform: translateY(2px);
-  }
+    .category-header {
+      background: #f1f5f9;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
 
-</style>
+    .category-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+    
+    table {
+      width: 100%;
+      min-width: 600px;
+      border-collapse: collapse;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #475569;
+      padding: 14px 16px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: left;
+      border-bottom: 2px solid var(--border-color);
+    }
+    
+    th:nth-child(1) { width: 8%; text-align: center; } 
+    th:nth-child(2) { width: 52%; }
+    th:nth-child(3) { width: 20%; }
+    th:nth-child(4) { width: 20%; text-align: right; }
+
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.9rem;
+      vertical-align: middle;
+    }
+    
+    tbody tr:nth-child(even) {
+        background-color: #fcfcfd;
+    }
+
+    tbody tr:hover {
+      background-color: #f1f5f9;
+    }
+
+    .serial-number {
+      color: var(--text-secondary);
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .product-name {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .quantity {
+      color: #334155;
+      font-weight: 500;
+    }
+
+    .price {
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-align: right;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--text-secondary);
+      display: none;
+    }
+
+    .no-results-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 20px;
+      color: #cbd5e1;
+    }
+
+    .no-results h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #334155;
+    }
+
+    .contact-form-section {
+      background: var(--bg-container);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      margin-top: 40px;
+    }
+
+    .form-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .form-header h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .form-header p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 60ch;
+      margin: 0 auto;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      display: flex;
+      gap: 16px;
+    }
+
+    .form-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: white;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+    
+    .submit-btn {
+      background: var(--text-primary);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .submit-btn:hover {
+      background: #1e293b;
+    }
+
+    .btn-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .form-success {
+      background: var(--success-bg);
+      color: var(--success-text);
+      border: 1px solid var(--success-border);
+      border-radius: 8px;
+      padding: 14px;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    
+    .success-icon {
+      width: 20px;
+      height: 20px;
+    }
+    
+    @media (max-width: 768px) {
+      .container { margin: 20px; }
+      .content { padding: 20px; }
+      .header { padding: 30px 20px; }
+      .company-name { font-size: 2.25rem; }
+      .form-group { flex-direction: column; }
+      .submit-btn { width: 100%; justify-content: center; }
+      .top-controls { flex-direction: column-reverse; align-items: stretch;}
+    }
+
+    @media (max-width: 480px) {
+      .container { margin: 10px; border-radius: 8px; }
+      .stats { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
       <h1 class="company-name">Poonam Enterprises</h1>
       <p class="tagline">
-        Your trusted supplier of high-quality cleaning and maintenance products, including liquid soaps, floor cleaners, disposable items, and all Taski, Diversey, and Virgo cleaning products. We also offer housekeeping materials, pickles, jams, shaving kits, hotel supplies, and bathroom essentials to cater to both residential and commercial needs.
+Your trusted supplier of high-quality cleaning and maintenance products, including liquid soaps, floor cleaners, disposable items, and all Taski, Diversey, and Virgo cleaning products. We also offer housekeeping materials, pickles, jams, shaving kits, hotel supplies, and bathroom essentials to cater to both residential and commercial needs.
+
       </p>
       <p class="tagline-secondary">
-        Committed to excellence in quality, service, and customer satisfaction.
+          Specializing in Taski, Diversey, Virgo, and a wide range of essential products.
       </p>
-      
+
       <div class="specialty-badges">
         <span class="badge">Taski Products</span>
         <span class="badge">Hotel Amenities</span>
         <span class="badge">Confectionery Items</span>
-        <span class="badge">Stationery Supplies</span>
-        <span class="badge">Cleaning & Housekeeping Supplies</span>
+        <span class="badge">Cleaning & Housekeeping</span>
       </div>
 
       <div class="contact-grid">
@@ -632,73 +471,67 @@ tr:hover {
           </svg>
           <div class="contact-text">
             <strong>Phone:</strong><br>
-            9999651068 - (Amrender Sharma)
+            9999651068 (Amrender Sharma)
           </div>
         </div>
         
         <div class="contact-item">
           <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
           </svg>
           <div class="contact-text">
             <strong>Address:</strong><br>
-           E-251/C,Shyam Vihar najafgarh , near dwarka sec 19, New delhi - 43
+            E-251/C, Shyam Vihar, Najafgarh, near Dwarka Sec 19, New Delhi - 43
           </div>
         </div>
       </div>
     </div>
 
     <div class="content">
-      <div class="download-section">
-        <button id="downloadPDF" class="download-btn">
-          <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-          </svg>
-          Download PDF Catalog
-        </button>
+        <div class="top-controls">
+            <div class="search-container">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" class="search-box" id="searchInput" placeholder="Search for products..." onkeyup="searchProducts()"/>
+            </div>
+            <button id="downloadPDF" class="download-btn">
+                <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                Download PDF
+            </button>
       </div>
 
-      <div class="search-container">
-        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-        </svg>
-        <input type="text" class="search-box" id="searchInput" placeholder="Search products by name, category, or quantity..." onkeyup="searchProducts()"/>
-      </div>
-
-      <div id="productCategories"></div>
-
-      <div class="no-results" id="noResults">
-        <svg class="no-results-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-        </svg>
-        <h3>No products found</h3>
-        <p>Try adjusting your search terms or browse all products</p>
+      <div class="stats" id="statsContainer">
+        <!-- Stats will be loaded here by JavaScript -->
       </div>
       
-      <div class="contact-form-section" style="margin-top:20px">
+      <div id="productCategories">
+        <!-- Categories will be loaded here -->
+      </div>
+
+      <div class="no-results" id="noResults">
+        <svg class="no-results-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <h3>No Products Found</h3>
+        <p>Your search returned no results. Please try a different term.</p>
+      </div>
+      
+      <div class="contact-form-section">
         <div class="form-header">
-          <h3>Hear From Us</h3>
-          <p>Get product updates, quotes, and special offers directly in your inbox</p>
+          <h3>Request Information</h3>
+          <p>Get product updates, quotes, and special offers directly from our team.</p>
         </div>
         
         <form name="contact" method="POST" data-netlify="true" class="contact-form" id="contactForm">
           <input type="hidden" name="form-name" value="contact" />
           <div class="form-group">
-            <input type="email" name="email" id="email" placeholder="Enter your email address" required class="form-input" />
-            <input type="tel" name="phone" id="phone" placeholder="Enter your phone number" required class="form-input" />
+            <input type="email" name="email" id="email" placeholder="Your email address" required class="form-input" />
+            <input type="tel" name="phone" id="phone" placeholder="Your phone number" required class="form-input" />
             <button type="submit" class="submit-btn">
-              <span class="btn-text">Hear From Us</span>
-              <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-              </svg>
+              <span class="btn-text">Request Info</span>
+              <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
             </button>
           </div>
           <div class="form-success" id="formSuccess" style="display: none;">
-            <svg class="success-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-            </svg>
-            Thank you! We'll be in touch soon.
+            <svg class="success-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Thank you! Your request has been sent. We'll be in touch soon.
           </div>
         </form>
       </div>
@@ -706,105 +539,19 @@ tr:hover {
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.0/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
   <script>
+    // IMPORTANT: Replace with your actual JSONBin.io keys
     const apiUrl = 'https://api.jsonbin.io/v3/b/68616fcf8a456b7966b817bd/latest';
-
     const headers = {
-      'X-Master-Key': '<YOUR_API_KEY>',
-      'X-Access-Key': '<YOUR_ACCESS_KEY>',
+      'X-Master-Key': '<YOUR_API_KEY>', // Replace with your Master Key
+      'X-Access-Key': '<YOUR_ACCESS_KEY>', // Replace with your Access Key
       'X-Bin-Meta': 'false'
     };
 
     let organizedProducts = {};
     let filteredProducts = {};
 
-    async function fetchProducts() {
-      try {
-        const response = await fetch(apiUrl, { headers });
-        const data = await response.json();
-        
-        // Check if data is already organized or needs to be organized
-        if (Array.isArray(data)) {
-          // If it's an array, organize it (fallback for flat structure)
-          organizedProducts = organizeProductsFromArray(data);
-        } else {
-          // If it's already organized as an object
-          organizedProducts = data;
-        }
-        
-        filteredProducts = { ...organizedProducts };
-        renderCategories();
-        
-      } catch (error) {
-        console.error('Error fetching product data:', error);
-        document.getElementById('productCategories').innerHTML =
-          `<div style="text-align:center;color:#dc2626;font-weight:600;padding:40px;">Failed to load product data. Please check your connection and try again.</div>`;
-      }
-    }
-
-    // Fallback function to organize flat array into categories
-    function organizeProductsFromArray(products) {
-      // This is a simplified organization - you can enhance this logic
-      const organized = {
-        "CLEANING_LIQUIDS": [],
-        "PERSONAL_CARE_LIQUIDS": [],
-        "AIR_FRESHENERS": [],
-        "GARBAGE_BAGS": [],
-        "CLEANING_TOOLS": [],
-        "BROOMS": [],
-        "PROTECTIVE_WEAR": [],
-        "SOAPS": [],
-        "PAPER_PRODUCTS": [],
-        "FOOD_SERVICE_SUPPLIES": [],
-        "BEVERAGES_AND_CONDIMENTS": [],
-        "GUEST_AMENITIES": [],
-        "MISCELLANEOUS": []
-      };
-
-      products.forEach(product => {
-        const name = product.name.toLowerCase();
-        
-        if (name.includes('floor cleaner') || name.includes('toilet cleaner') || name.includes('glass cleaner') || name.includes('harpic') || name.includes('multipurpose') || name.includes('lyzol')) {
-          organized.CLEANING_LIQUIDS.push(product);
-        } else if (name.includes('handwash') || name.includes('shampoo') || name.includes('shower gel') || name.includes('body lotion')) {
-          organized.PERSONAL_CARE_LIQUIDS.push(product);
-        } else if (name.includes('room freshener') || name.includes('odonil') || name.includes('air pocket') || name.includes('diffuser') || name.includes('napthalene')) {
-          organized.AIR_FRESHENERS.push(product);
-        } else if (name.includes('garbage bag') || name.includes('garbage') && name.includes('roll')) {
-          organized.GARBAGE_BAGS.push(product);
-        } else if (name.includes('poccha') || name.includes('duster') || name.includes('juna') || name.includes('brush') || name.includes('wiper') || name.includes('mop')) {
-          organized.CLEANING_TOOLS.push(product);
-        } else if (name.includes('broom') || name.includes('feather brush')) {
-          organized.BROOMS.push(product);
-        } else if (name.includes('gloves') || name.includes('cap') || name.includes('apron')) {
-          organized.PROTECTIVE_WEAR.push(product);
-        } else if (name.includes('soap') || name.includes('medimix')) {
-          organized.SOAPS.push(product);
-        } else if (name.includes('tissue') || name.includes('napkin') || name.includes('toilet roll') || name.includes('dolly paper')) {
-          organized.PAPER_PRODUCTS.push(product);
-        } else if (name.includes('tray mat') || name.includes('foil') || name.includes('wrap') || name.includes('spoon') || name.includes('fork') || name.includes('stirrer') || name.includes('straw')) {
-          organized.FOOD_SERVICE_SUPPLIES.push(product);
-        } else if (name.includes('tea') || name.includes('coffee') || name.includes('creamer') || name.includes('sugar') || name.includes('salt') || name.includes('pepper') || name.includes('pickle') || name.includes('jam')) {
-          organized.BEVERAGES_AND_CONDIMENTS.push(product);
-        } else if (name.includes('dental kit') || name.includes('shaving kit') || name.includes('comb') || name.includes('dnd card')) {
-          organized.GUEST_AMENITIES.push(product);
-        } else {
-          organized.MISCELLANEOUS.push(product);
-        }
-      });
-
-      // Remove empty categories
-      Object.keys(organized).forEach(key => {
-        if (organized[key].length === 0) {
-          delete organized[key];
-        }
-      });
-
-      return organized;
-    }
-
-    // Category name formatting
     const categoryNames = {
       "CLEANING_LIQUIDS": "Cleaning Liquids",
       "PERSONAL_CARE_LIQUIDS": "Personal Care Liquids", 
@@ -821,6 +568,76 @@ tr:hover {
       "MISCELLANEOUS": "Miscellaneous"
     };
 
+    async function fetchProducts() {
+      try {
+        const response = await fetch(apiUrl, { headers });
+        if (!response.ok) {
+            throw new Error(`API request failed with status ${response.status}`);
+        }
+        const data = await response.json();
+        
+        organizedProducts = data && typeof data === 'object' && !Array.isArray(data) ? data : organizeProductsFromArray(data);
+        filteredProducts = { ...organizedProducts };
+        
+        renderCategories();
+        updateStats();
+
+      } catch (error) {
+        console.error('Error fetching product data:', error);
+        document.getElementById('productCategories').innerHTML =
+          `<div style="text-align:center; color:#dc2626; font-weight:600; padding:40px; background-color:#ffe4e6; border-radius:8px;">
+             Failed to load product data. Please ensure API keys are correct and try again.
+           </div>`;
+      }
+    }
+
+    function organizeProductsFromArray(products) {
+      const organized = {};
+      Object.keys(categoryNames).forEach(key => organized[key] = []);
+
+      products.forEach(product => {
+        const name = product.name.toLowerCase();
+        let categorized = false;
+        if (name.includes('cleaner') || name.includes('harpic') || name.includes('lyzol')) organized.CLEANING_LIQUIDS.push(product), categorized = true;
+        else if (name.includes('handwash') || name.includes('shampoo') || name.includes('lotion')) organized.PERSONAL_CARE_LIQUIDS.push(product), categorized = true;
+        else if (name.includes('freshener') || name.includes('odonil') || name.includes('diffuser')) organized.AIR_FRESHENERS.push(product), categorized = true;
+        else if (name.includes('garbage')) organized.GARBAGE_BAGS.push(product), categorized = true;
+        else if (name.includes('duster') || name.includes('brush') || name.includes('wiper') || name.includes('mop')) organized.CLEANING_TOOLS.push(product), categorized = true;
+        else if (name.includes('broom')) organized.BROOMS.push(product), categorized = true;
+        else if (name.includes('gloves') || name.includes('cap')) organized.PROTECTIVE_WEAR.push(product), categorized = true;
+        else if (name.includes('soap') || name.includes('medimix')) organized.SOAPS.push(product), categorized = true;
+        else if (name.includes('tissue') || name.includes('napkin') || name.includes('roll')) organized.PAPER_PRODUCTS.push(product), categorized = true;
+        else if (name.includes('foil') || name.includes('wrap') || name.includes('spoon')) organized.FOOD_SERVICE_SUPPLIES.push(product), categorized = true;
+        else if (name.includes('tea') || name.includes('coffee') || name.includes('pickle') || name.includes('jam')) organized.BEVERAGES_AND_CONDIMENTS.push(product), categorized = true;
+        else if (name.includes('kit') || name.includes('comb')) organized.GUEST_AMENITIES.push(product), categorized = true;
+        
+        if (!categorized) organized.MISCELLANEOUS.push(product);
+      });
+
+      return Object.fromEntries(Object.entries(organized).filter(([_, v]) => v.length > 0));
+    }
+    
+    function updateStats() {
+        const statsContainer = document.getElementById('statsContainer');
+        const totalProducts = Object.values(organizedProducts).reduce((sum, products) => sum + products.length, 0);
+        const totalCategories = Object.keys(organizedProducts).length;
+        
+        statsContainer.innerHTML = `
+            <div class="stat">
+                <div class="stat-number">${totalProducts}</div>
+                <div class="stat-label">Total Products</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">${totalCategories}</div>
+                <div class="stat-label">Product Categories</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Customer Support</div>
+            </div>
+        `;
+    }
+
     function renderCategories() {
       const container = document.getElementById('productCategories');
       container.innerHTML = '';
@@ -829,41 +646,29 @@ tr:hover {
         const products = filteredProducts[categoryKey];
         if (products.length === 0) return;
 
-        const categoryDiv = document.createElement('div');
-        categoryDiv.className = 'category-section';
-
         const categoryName = categoryNames[categoryKey] || categoryKey.replace(/_/g, ' ');
-        
-        categoryDiv.innerHTML = `
-          <div class="category-header">
-            <h2 class="category-title">${categoryName}</h2>
-            <p class="category-count">${products.length} items</p>
-          </div>
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>S.No</th>
-                  <th>Product Name</th>
-                  <th>Quantity</th>
-                  <th>Price (In Rs.)</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${products.map((product, index) => `
-                  <tr>
-                    <td class="serial-number">${index + 1}</td>
-                    <td class="product-name">${product.name}</td>
-                    <td><span class="quantity">${product.quantity}</span></td>
-                    <td class="price">${product.price}</td>
-                  </tr>
-                `).join('')}
-              </tbody>
-            </table>
-          </div>
-        `;
+        const tableRows = products.map((p, i) => `
+            <tr>
+              <td class="serial-number">${i + 1}</td>
+              <td class="product-name">${p.name}</td>
+              <td class="quantity">${p.quantity}</td>
+              <td class="price">${p.price}</td>
+            </tr>`).join('');
 
-        container.appendChild(categoryDiv);
+        container.innerHTML += `
+          <div class="category-section">
+            <div class="category-header"><h2 class="category-title">${categoryName}</h2></div>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>S.No</th><th>Product Name</th><th>Quantity</th><th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>${tableRows}</tbody>
+              </table>
+            </div>
+          </div>`;
       });
     }
 
@@ -872,310 +677,168 @@ tr:hover {
       filteredProducts = {};
 
       Object.keys(organizedProducts).forEach(categoryKey => {
-        const categoryProducts = organizedProducts[categoryKey].filter(product =>
-          product.name.toLowerCase().includes(term) || 
-          product.quantity.toLowerCase().includes(term) ||
-          categoryNames[categoryKey].toLowerCase().includes(term)
+        const filtered = organizedProducts[categoryKey].filter(p =>
+          p.name.toLowerCase().includes(term) ||
+          p.quantity.toLowerCase().includes(term) ||
+          (categoryNames[categoryKey] || '').toLowerCase().includes(term)
         );
-
-        if (categoryProducts.length > 0) {
-          filteredProducts[categoryKey] = categoryProducts;
+        if (filtered.length > 0) {
+          filteredProducts[categoryKey] = filtered;
         }
       });
-
-      const noResults = document.getElementById('noResults');
-      const categoriesContainer = document.getElementById('productCategories');
-
-      if (Object.keys(filteredProducts).length === 0) {
-        noResults.style.display = 'block';
-        categoriesContainer.style.display = 'none';
-      } else {
-        noResults.style.display = 'none';
-        categoriesContainer.style.display = 'block';
-      }
-
+      
+      const hasResults = Object.keys(filteredProducts).length > 0;
+      document.getElementById('noResults').style.display = hasResults ? 'none' : 'block';
+      document.getElementById('productCategories').style.display = hasResults ? 'block' : 'none';
+      
       renderCategories();
     }
-
-    // PDF Download with improved layout
-    // function downloadPDF() {
-    //   const downloadBtn = document.getElementById('downloadPDF');
-    //   downloadBtn.disabled = true;
-    //   downloadBtn.innerHTML = `
-    //     <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    //       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-    //     </svg>
-    //     Generating PDF...
-    //   `;
-
-    //   setTimeout(() => {
-    //     try {
-    //       const { jsPDF } = window.jspdf;
-    //       const doc = new jsPDF();
-
-    //       // Header
-    //       doc.setFontSize(20);
-    //       doc.setFont('helvetica', 'bold');
-    //       doc.text('Shyam Traders', 15, 20);
-          
-    //       doc.setFontSize(10);
-    //       doc.setFont('helvetica', 'normal');
-    //       doc.text('Product Catalogue', 15, 28);
-    //       doc.text('Phone: 9999651068 | Address: L145, Gali number 5, Mahipalpur Extension, New Delhi - 37', 15, 34);
-          
-    //       // Line separator
-    //       doc.setLineWidth(0.3);
-    //       doc.line(15, 40, 195, 40);
-
-    //       let yPosition = 48;
-    //       let serialNumber = 1;
-
-    //       // Process each category
-    //       Object.keys(filteredProducts).forEach((categoryKey, categoryIndex) => {
-    //         const products = filteredProducts[categoryKey];
-    //         if (products.length === 0) return;
-
-    //         const categoryName = categoryNames[categoryKey] || categoryKey.replace(/_/g, ' ');
-
-    //         // Check if we need a new page for category header
-    //         if (yPosition > 250) {
-    //           doc.addPage();
-    //           yPosition = 20;
-    //         }
-
-    //         // Category header
-    //         doc.setFontSize(12);
-    //         doc.setFont('helvetica', 'bold');
-    //         doc.setFillColor(240, 240, 240);
-    //         doc.rect(15, yPosition - 4, 180, 12, 'F');
-    //         doc.setTextColor(0, 0, 0);
-    //         doc.text(categoryName, 17, yPosition + 3);
-    //         yPosition += 15;
-
-    //         // Prepare table data for this category
-    //         const tableData = products.map((product) => [
-    //           serialNumber++,
-    //           product.name,
-    //           product.quantity,
-    //           `${product.price}`
-    //         ]);
-
-    //         // Add table using autoTable with optimized settings
-    //         doc.autoTable({
-    //           head: [['S.No', 'Product Name', 'Quantity', 'Price (In Rs.)']],
-    //           body: tableData,
-    //           startY: yPosition,
-    //           styles: {
-    //             fontSize: 9,
-    //             cellPadding: 2,
-    //             overflow: 'linebreak',
-    //             halign: 'left',
-    //             lineColor: [200, 200, 200],
-    //             lineWidth: 0.1
-    //           },
-    //           headStyles: {
-    //             fillColor: [245, 245, 245],
-    //             textColor: [0, 0, 0],
-    //             fontStyle: 'bold',
-    //             fontSize: 9
-    //           },
-    //           columnStyles: {
-    //             0: { width: 15, halign: 'center' },
-    //             1: { width: 90 },
-    //             2: { width: 25, halign: 'center' },
-    //             3: { width: 25, halign: 'right' }
-    //           },
-    //           alternateRowStyles: {
-    //             fillColor: [252, 252, 252]
-    //           },
-    //           margin: { left: 15, right: 15 },
-    //           theme: 'grid',
-    //           didDrawPage: function (data) {
-    //             yPosition = data.cursor.y;
-    //           }
-    //         });
-
-    //         yPosition = doc.lastAutoTable.finalY + 10;
-    //       });
-
-    //       // Add footer to all pages
-    //       const pageCount = doc.internal.getNumberOfPages();
-    //       for (let i = 1; i <= pageCount; i++) {
-    //         doc.setPage(i);
-    //         doc.setFontSize(7);
-    //         doc.setTextColor(100);
-    //         doc.text(
-    //           `Generated on ${new Date().toLocaleDateString('en-IN')}`,
-    //           15,
-    //           doc.internal.pageSize.height - 10
-    //         );
-    //         doc.text(
-    //           `Page ${i} of ${pageCount}`,
-    //           doc.internal.pageSize.width / 2,
-    //           doc.internal.pageSize.height - 10,
-    //           { align: 'center' }
-    //         );
-    //         doc.text(
-    //           'Shyam Traders',
-    //           doc.internal.pageSize.width - 15,
-    //           doc.internal.pageSize.height - 10,
-    //           { align: 'right' }
-    //         );
-    //       }
-
-    //       // Save the PDF
-    //       const fileName = `Shyam_Traders_Catalog_${new Date().toISOString().split('T')[0]}.pdf`;
-    //       doc.save(fileName);
-
-    //     } catch (error) {
-    //       console.error('Error generating PDF:', error);
-    //       alert('Unable to generate PDF. Please try again.');
-    //     } finally {
-    //       // Reset button
-    //       setTimeout(() => {
-    //         downloadBtn.disabled = false;
-    //         downloadBtn.innerHTML = `
-    //           <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    //             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-    //           </svg>
-    //           Download PDF Catalog
-    //         `;
-    //       }, 1000);
-    //     }
-    //   }, 500);
-    // }
-    function downloadPDF() {
+    
+ function downloadPDF() {
   const downloadBtn = document.getElementById('downloadPDF');
   downloadBtn.disabled = true;
   downloadBtn.innerHTML = `
-    <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-    </svg>
-    Generating PDF...
-  `;
+    <svg class="download-icon" fill="none" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" fill="currentColor" fill-opacity="0.2"/><path d="M21 12C21 7.02944 16.9706 3 12 3V5C15.866 5 19 8.13401 19 12H21Z" fill="white"/></svg>
+    Generating...`;
 
   setTimeout(() => {
     try {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
 
-      // Header
-      doc.setFontSize(20);
-      doc.setFont('helvetica', 'bold');
-      doc.text('Poonam Enterprises', 15, 20);
-      
-      doc.setFontSize(10);
-      doc.setFont('helvetica', 'normal');
-      doc.text('Product Catalogue', 15, 28);
-      doc.text('Phone: 9999651068 - (Amrender Sharma) | Address: E-251/C,Shyam vihar najafgarh, near Dwarka sec 19 ,New delhi 43', 15, 34);
-      
-      // Line separator
-      doc.setLineWidth(0.3);
-      doc.line(15, 40, 195, 40);
-
-      let yPosition = 48;
-      let serialNumber = 1;
-
-      // Flatten all products into a single array (remove category grouping)
-      const allProducts = [];
-      Object.keys(filteredProducts).forEach((categoryKey) => {
-        const products = filteredProducts[categoryKey];
-        allProducts.push(...products);
+      // Gather all products (flattened, category-agnostic)
+      let allProducts = [];
+      Object.keys(filteredProducts).forEach(catKey => {
+        allProducts.push(...filteredProducts[catKey]);
       });
 
-      // Prepare table data for all products
-      const tableData = allProducts.map((product) => [
+      let serialNumber = 1;
+      const tableData = allProducts.map(p => [
         serialNumber++,
-        product.name,
-        product.quantity,
-        `${product.price}`
+        p.name,
+        p.quantity,
+        `${p.price}`
       ]);
 
-      // Add single table with all products
-      doc.autoTable({
-        head: [['S.No', 'Product Name', 'Quantity', 'Price (In Rs.)']],
-        body: tableData,
-        startY: yPosition,
-        styles: {
-          fontSize: 9,
-          cellPadding: 2,
-          overflow: 'linebreak',
-          halign: 'left',
-          lineColor: [200, 200, 200],
-          lineWidth: 0.1
-        },
-        headStyles: {
-          fillColor: [245, 245, 245],
-          textColor: [0, 0, 0],
-          fontStyle: 'bold',
-          fontSize: 9
-        },
-        columnStyles: {
-          0: { width: 15, halign: 'center' },
-          1: { width: 100, cellWidth: 'wrap' },
-          2: { width: 30, halign: 'center' },
-          3: { width: 30, halign: 'right' }
-        },
-        alternateRowStyles: {
-          fillColor: [252, 252, 252]
-        },
-        margin: { left: 15, right: 15 },
-        theme: 'grid'
-      });
+      const tagline = "Your trusted supplier of high-quality cleaning and maintenance products, including liquid soaps, floor cleaners, disposable items, and all Taski, Diversey, and Virgo cleaning products. We also offer housekeeping materials, pickles, jams, shaving kits, hotel supplies, and bathroom essentials to cater to both residential and commercial needs. Committed to excellence in quality, service, and customer satisfaction.";
+      const contact = "Phone: 9999651068 (Amrender Sharma)";
+      const address = "Address: E-251/C, Shyam Vihar, Najafgarh, near Dwarka Sec 19, New Delhi - 43";
 
-      // Add footer to all pages
-      const pageCount = doc.internal.getNumberOfPages();
-      for (let i = 1; i <= pageCount; i++) {
-        doc.setPage(i);
-        doc.setFontSize(7);
-        doc.setTextColor(100);
-        doc.text(
-          `Generated on ${new Date().toLocaleDateString('en-IN')}`,
-          15,
-          doc.internal.pageSize.height - 10
-        );
-        doc.text(
-          `Page ${i} of ${pageCount}`,
-          doc.internal.pageSize.width / 2,
-          doc.internal.pageSize.height - 10,
-          { align: 'center' }
-        );
-        doc.text(
-          'Shyam Traders',
-          doc.internal.pageSize.width - 15,
-          doc.internal.pageSize.height - 10,
-          { align: 'right' }
-        );
+      // Custom header for each page
+      function addHeader(data) {
+  doc.setFontSize(18);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Poonam Enterprises', doc.internal.pageSize.getWidth() / 2, 16, { align: 'center' });
+
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  // Use splitTextToSize to wrap long tagline text to fit PDF page width
+  const fullTagline = "Your trusted supplier of high-quality cleaning and maintenance products, including liquid soaps, floor cleaners, disposable items, and all Taski, Diversey, and Virgo cleaning products. We also offer housekeeping materials, pickles, jams, shaving kits, hotel supplies, and bathroom essentials to cater to both residential and commercial needs.";
+
+  // Split long tagline to wrap properly, maxWidth ~170
+  const taglineLines = doc.splitTextToSize(fullTagline, 170);
+  doc.text(taglineLines, doc.internal.pageSize.getWidth() / 2, 24, { align: 'center' });
+
+  let bottomY = 22 + (taglineLines.length - 1) * 8;
+  
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.text("Phone: 9999651068 (Amrender Sharma)", 15, bottomY);
+  doc.text("Address: E-251/C, Shyam Vihar, Najafgarh, near Dwarka Sec 19, New Delhi - 43", 15, bottomY + 6);
+  doc.setLineWidth(0.3);
+  doc.line(14, bottomY + 10, 196, bottomY + 10);
+
+  // Set correct start margin for table so it won't overlap
+  if (data && data.settings) data.settings.margin.top = bottomY + 14;
+}
+
+
+      // Custom footer for each page
+      function addFooter() {
+        const pageCount = doc.internal.getNumberOfPages();
+        for (let i = 1; i <= pageCount; i++) {
+          doc.setPage(i);
+          const pageWidth = doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
+          const pageHeight = doc.internal.pageSize.height || doc.internal.pageSize.getHeight();
+
+          doc.setLineWidth(0.2);
+          doc.setDrawColor(160);
+          doc.line(14, pageHeight - 18, 196, pageHeight - 18);
+
+          doc.setFontSize(8);
+          doc.setTextColor(100);
+          doc.setFont('helvetica', 'normal');
+          doc.text(
+            `Generated: ${new Date().toLocaleDateString('en-IN')}`,
+            15,
+            pageHeight - 10
+          );
+          doc.text('Poonam Enterprises | Contact: 9999651068', pageWidth / 2, pageHeight - 10, { align: 'center' });
+          doc.text(
+            `Page ${i} of ${pageCount}`,
+            pageWidth - 15,
+            pageHeight - 10,
+            { align: 'right' }
+          );
+        }
       }
 
-      // Save the PDF
-      const fileName = `Shyam_Traders_Catalog_${new Date().toISOString().split('T')[0]}.pdf`;
+      // Render header on every page *before* table
+      doc.autoTable({
+        head: [['S.No', 'Product Name', 'Quantity', 'Price']],
+        body: tableData,
+        theme: 'grid',
+        startY: 62,
+        margin: { left: 14, right: 0 },
+        headStyles: {
+          fillColor: [41, 51, 61],
+          textColor: [255, 255, 255],
+          fontStyle: 'bold'
+        },
+        styles: {
+          fontSize: 9,
+          overflow: 'linebreak'
+        },
+        columnStyles: {
+          0: { cellWidth: 15, halign: 'center' },
+          1: { cellWidth: 95 },
+          2: { cellWidth: 32, halign: 'left' },
+          3: { cellWidth: 45, halign: 'right' }
+        },
+        didDrawPage: addHeader
+      });
+
+      addFooter();
+
+      const fileName = `Poonam_Enterprises_Catalog_${new Date().toISOString().split('T')[0]}.pdf`;
       doc.save(fileName);
 
     } catch (error) {
       console.error('Error generating PDF:', error);
-      alert('Unable to generate PDF. Please try again.');
+      alert('Could not generate PDF. Please try again.');
     } finally {
-      // Reset button
-      setTimeout(() => {
-        downloadBtn.disabled = false;
-        downloadBtn.innerHTML = `
-          <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-          </svg>
-          Download PDF Catalog
-        `;
-      }, 1000);
+      downloadBtn.disabled = false;
+      downloadBtn.innerHTML = `<svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg> Download PDF`;
     }
   }, 500);
 }
 
-    // Add event listener for download button
-    document.getElementById('downloadPDF').addEventListener('click', downloadPDF);
 
-    // Initialize the page
-    renderCategories();
+    document.getElementById('downloadPDF').addEventListener('click', downloadPDF);
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      // Simulate form submission
+      console.log("Form submitted with:", Object.fromEntries(data.entries()));
+      document.getElementById('formSuccess').style.display = 'flex';
+      form.reset();
+      setTimeout(() => {
+        document.getElementById('formSuccess').style.display = 'none';
+      }, 5000);
+    });
+    
     fetchProducts();
-    </script>
+  </script>
 </body>
 </html>
