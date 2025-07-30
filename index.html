@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Poonam Enterprises - Product Catalogue</title>
   <style>
-     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
     :root {
       --bg-light: #f8fafc;
@@ -442,144 +443,105 @@
       .container { margin: 10px; border-radius: 8px; }
       .stats { grid-template-columns: 1fr; }
     }
-    /* ... your theming CSS ... */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-    :root {
-      --bg-light: #f8fafc;
-      --bg-container: #ffffff;
-      --border-color: #e2e8f0;
-      --text-primary: #0f172a;
-      --text-secondary: #64748b;
-      --accent-color: #0284c7;
-      --accent-color-dark: #0369a1;
-    }
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background-color: var(--bg-light);
-      min-height: 100vh;
-      color: var(--text-primary);
-      line-height: 1.6;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 40px auto;
-      background: var(--bg-container);
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-      overflow: hidden;
-      border: 1px solid var(--border-color);
-    }
-    /* ... rest of your container/header/company CSS ... */
-
-    /* Product table image cell */
-    .product-img {
-      width: 36px;
-      height: 36px;
-      object-fit: contain;
-      margin-right: 10px;
-      vertical-align: middle;
-      border-radius: 4px;
-      border: 1px solid #e2e8f0;
-      background: #f1f5f9;
-    }
-    .product-name-cell {
-      display: flex;
-      align-items: center;
-    }
-    .view-link {
-      margin-left: 14px;
-      color: var(--accent-color);
-      font-size: 0.89rem;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      text-decoration: underline;
-      padding: 0;
-    }
-
-    /* Modal for detail view */
-    .modal-bg {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      left: 0; top: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(17, 24, 39, 0.38);
-      justify-content: center; align-items: center;
-    }
-    .modal-bg.active { display: flex; }
-    .modal-content {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 16px 32px rgba(0,0,0,0.10);
-      padding: 2.1rem 1.3rem 1.4rem;
-      max-width: 92vw;
-      width: 340px;
-      position: relative;
-      text-align: center;
-      border: 1px solid #e2e8f0;
-    }
-    .modal-content img {
-      width: 90px; height: 90px;
-      object-fit: contain;
-      border-radius: 6px;
-      margin-bottom: 14px;
-      border: 1px solid #e2e8f0;
-      background: #f1f5f9;
-    }
-    .modal-close {
-      background: none;
-      border: none;
-      position: absolute;
-      right: 10px; top: 10px;
-      font-size: 1.6em;
-      color: #64748b;
-      cursor: pointer;
-      line-height: 1;
-    }
-    /* Responsive fix for mobile */
-    @media (max-width: 768px) {
-      .container { margin: 20px; }
-      .content { padding: 12px; }
-      th, td { padding: 9px 5px; font-size: 0.88em;}
-      .category-header {padding:10px;}
-    }
-    @media (max-width: 480px) {
-      .container { margin: 10px; border-radius: 8px; }
-      th, td { padding: 7px 3px; font-size: 0.85em;}
-      table { min-width: 0; width: 100%; }
-      .modal-content { width: 98vw; max-width: 340px;}
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
       <h1 class="company-name">Poonam Enterprises</h1>
-      <p class="tagline">Your trusted supplier of high-quality cleaning and maintenance products...</p>
-      <p class="tagline-secondary">Specializing in Taski, Diversey, Virgo, and a wide range of essential products.</p>
-    </div>
-    <div class="content">
-      <div class="top-controls">
-        <input type="text" class="search-box" id="searchInput" placeholder="Search for products..." onkeyup="searchProducts()"/>
+      <p class="tagline">
+Your trusted supplier of high-quality cleaning and maintenance products, including liquid soaps, floor cleaners, disposable items, and all Taski, Diversey, and Virgo cleaning products. We also offer housekeeping materials, pickles, jams, shaving kits, hotel supplies, and bathroom essentials to cater to both residential and commercial needs.
+
+      </p>
+      <p class="tagline-secondary">
+          Specializing in Taski, Diversey, Virgo, and a wide range of essential products.
+      </p>
+
+      <div class="specialty-badges">
+        <span class="badge">Taski Products</span>
+        <span class="badge">Hotel Amenities</span>
+        <span class="badge">Confectionery Items</span>
+        <span class="badge">Cleaning & Housekeeping</span>
       </div>
-      <div id="productCategories"></div>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          <div class="contact-text">
+            <strong>Phone:</strong><br>
+            9999651068 (Amrender Sharma)
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          <div class="contact-text">
+            <strong>Address:</strong><br>
+            E-251/C, Shyam Vihar, Najafgarh, near Dwarka Sec 19, New Delhi - 43
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+        <div class="top-controls">
+            <div class="search-container">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" class="search-box" id="searchInput" placeholder="Search for products..." onkeyup="searchProducts()"/>
+            </div>
+            <button id="downloadPDF" class="download-btn">
+                <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                Download PDF
+            </button>
+      </div>
+
+      <div class="stats" id="statsContainer">
+        <!-- Stats will be loaded here by JavaScript -->
+      </div>
+      
+      <div id="productCategories">
+        <!-- Categories will be loaded here -->
+      </div>
+
+      <div class="no-results" id="noResults">
+        <svg class="no-results-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <h3>No Products Found</h3>
+        <p>Your search returned no results. Please try a different term.</p>
+      </div>
+      
+      <div class="contact-form-section">
+        <div class="form-header">
+          <h3>Request Information</h3>
+          <p>Get product updates, quotes, and special offers directly from our team.</p>
+        </div>
+        
+        <form name="contact" method="POST" data-netlify="true" class="contact-form" id="contactForm">
+          <input type="hidden" name="form-name" value="contact" />
+          <div class="form-group">
+            <input type="email" name="email" id="email" placeholder="Your email address" required class="form-input" />
+            <input type="tel" name="phone" id="phone" placeholder="Your phone number" required class="form-input" />
+            <button type="submit" class="submit-btn">
+              <span class="btn-text">Request Info</span>
+              <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+            </button>
+          </div>
+          <div class="form-success" id="formSuccess" style="display: none;">
+            <svg class="success-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Thank you! Your request has been sent. We'll be in touch soon.
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
-  <!-- Modal for product details -->
-  <div class="modal-bg" id="prodModal">
-    <div class="modal-content" id="modalContent">
-      <button class="modal-close" aria-label="Close" onclick="closeProductModal()">&times;</button>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg" alt="Product image" id="modalImg"
-           onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg">
-      <h2 id="modalName" style="font-size:1.26rem;font-weight:700;margin-top:2px;"></h2>
-      <div id="modalQty" style="color:#777; margin: 8px 0 14px; font-size:1em;"></div>
-      <div id="modalPrice" style="font-size:1.2em;font-weight:600;"></div>
-    </div>
-  </div>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
   <script>
+    // IMPORTANT: Replace with your actual JSONBin.io keys
     const apiUrl = 'https://api.jsonbin.io/v3/b/68616fcf8a456b7966b817bd/latest';
     const headers = {
       'X-Master-Key': '<YOUR_API_KEY>', // Replace with your Master Key
@@ -587,10 +549,12 @@
       'X-Bin-Meta': 'false'
     };
 
-    let organizedProducts = {}, filteredProducts = {};
+    let organizedProducts = {};
+    let filteredProducts = {};
+
     const categoryNames = {
       "CLEANING_LIQUIDS": "Cleaning Liquids",
-      "PERSONAL_CARE_LIQUIDS": "Personal Care Liquids",
+      "PERSONAL_CARE_LIQUIDS": "Personal Care Liquids", 
       "AIR_FRESHENERS": "Air Fresheners",
       "GARBAGE_BAGS": "Garbage Bags",
       "CLEANING_TOOLS": "Cleaning Tools",
@@ -607,12 +571,19 @@
     async function fetchProducts() {
       try {
         const response = await fetch(apiUrl, { headers });
-        if (!response.ok) throw new Error(`API request failed (${response.status})`);
+        if (!response.ok) {
+            throw new Error(`API request failed with status ${response.status}`);
+        }
         const data = await response.json();
-        organizedProducts = data && typeof data === 'object' && !Array.isArray(data) ? data : {};
+        
+        organizedProducts = data && typeof data === 'object' && !Array.isArray(data) ? data : organizeProductsFromArray(data);
         filteredProducts = { ...organizedProducts };
+        
         renderCategories();
+        updateStats();
+
       } catch (error) {
+        console.error('Error fetching product data:', error);
         document.getElementById('productCategories').innerHTML =
           `<div style="text-align:center; color:#dc2626; font-weight:600; padding:40px; background-color:#ffe4e6; border-radius:8px;">
              Failed to load product data. Please ensure API keys are correct and try again.
@@ -620,19 +591,51 @@
       }
     }
 
-    function searchProducts() {
-      const term = document.getElementById('searchInput').value.toLowerCase();
-      filteredProducts = {};
+    function organizeProductsFromArray(products) {
+      const organized = {};
+      Object.keys(categoryNames).forEach(key => organized[key] = []);
 
-      Object.keys(organizedProducts).forEach(categoryKey => {
-        const filtered = organizedProducts[categoryKey].filter(p =>
-          p.name.toLowerCase().includes(term) ||
-          (p.quantity && p.quantity.toLowerCase().includes(term)) ||
-          (categoryNames[categoryKey] || '').toLowerCase().includes(term)
-        );
-        if (filtered.length > 0) filteredProducts[categoryKey] = filtered;
+      products.forEach(product => {
+        const name = product.name.toLowerCase();
+        let categorized = false;
+        if (name.includes('cleaner') || name.includes('harpic') || name.includes('lyzol')) organized.CLEANING_LIQUIDS.push(product), categorized = true;
+        else if (name.includes('handwash') || name.includes('shampoo') || name.includes('lotion')) organized.PERSONAL_CARE_LIQUIDS.push(product), categorized = true;
+        else if (name.includes('freshener') || name.includes('odonil') || name.includes('diffuser')) organized.AIR_FRESHENERS.push(product), categorized = true;
+        else if (name.includes('garbage')) organized.GARBAGE_BAGS.push(product), categorized = true;
+        else if (name.includes('duster') || name.includes('brush') || name.includes('wiper') || name.includes('mop')) organized.CLEANING_TOOLS.push(product), categorized = true;
+        else if (name.includes('broom')) organized.BROOMS.push(product), categorized = true;
+        else if (name.includes('gloves') || name.includes('cap')) organized.PROTECTIVE_WEAR.push(product), categorized = true;
+        else if (name.includes('soap') || name.includes('medimix')) organized.SOAPS.push(product), categorized = true;
+        else if (name.includes('tissue') || name.includes('napkin') || name.includes('roll')) organized.PAPER_PRODUCTS.push(product), categorized = true;
+        else if (name.includes('foil') || name.includes('wrap') || name.includes('spoon')) organized.FOOD_SERVICE_SUPPLIES.push(product), categorized = true;
+        else if (name.includes('tea') || name.includes('coffee') || name.includes('pickle') || name.includes('jam')) organized.BEVERAGES_AND_CONDIMENTS.push(product), categorized = true;
+        else if (name.includes('kit') || name.includes('comb')) organized.GUEST_AMENITIES.push(product), categorized = true;
+        
+        if (!categorized) organized.MISCELLANEOUS.push(product);
       });
-      renderCategories();
+
+      return Object.fromEntries(Object.entries(organized).filter(([_, v]) => v.length > 0));
+    }
+    
+    function updateStats() {
+        const statsContainer = document.getElementById('statsContainer');
+        const totalProducts = Object.values(organizedProducts).reduce((sum, products) => sum + products.length, 0);
+        const totalCategories = Object.keys(organizedProducts).length;
+        
+        statsContainer.innerHTML = `
+            <div class="stat">
+                <div class="stat-number">${totalProducts}</div>
+                <div class="stat-label">Total Products</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">${totalCategories}</div>
+                <div class="stat-label">Product Categories</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Customer Support</div>
+            </div>
+        `;
     }
 
     function renderCategories() {
@@ -644,24 +647,13 @@
         if (products.length === 0) return;
 
         const categoryName = categoryNames[categoryKey] || categoryKey.replace(/_/g, ' ');
-        const tableRows = products.map((p, i) => {
-          // If your API has p.image, use it. Otherwise, fallback to 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'
-          let imgSrc = (p.image && p.image.trim()) ? p.image : 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
-          return `
+        const tableRows = products.map((p, i) => `
             <tr>
               <td class="serial-number">${i + 1}</td>
-              <td>
-                <div class="product-name-cell">
-                  <img  style="cursor:pointer"onClick="showProductModal('${encodeURIComponent(JSON.stringify(p))}')"class="product-img" src="${imgSrc}" alt="${p.name}"
-                    onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'>
-                  <span class="product-name" style="cursor:pointer"onClick="showProductModal('${encodeURIComponent(JSON.stringify(p))}')">${p.name}</span>
-                </div>
-              </td>
+              <td class="product-name">${p.name}</td>
               <td class="quantity">${p.quantity}</td>
               <td class="price">${p.price}</td>
-            </tr>
-          `;
-        }).join('');
+            </tr>`).join('');
 
         container.innerHTML += `
           <div class="category-section">
@@ -670,7 +662,7 @@
               <table>
                 <thead>
                   <tr>
-                    <th>S.No</th><th>Product</th><th>Qty</th><th>Price</th>
+                    <th>S.No</th><th>Product Name</th><th>Quantity</th><th>Price</th>
                   </tr>
                 </thead>
                 <tbody>${tableRows}</tbody>
@@ -680,29 +672,172 @@
       });
     }
 
-    function showProductModal(productEncoded) {
-      const p = JSON.parse(decodeURIComponent(productEncoded));
-      // Set modal data
-      let imgSrc = (p.image && p.image.trim()) ? p.image : 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
-      const modalImg = document.getElementById('modalImg');
-      modalImg.src = imgSrc;
-      modalImg.alt = p.name;
-      modalImg.onerror = function() {
-        this.onerror = null;
-        this.src = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
-      };
-      document.getElementById('modalName').innerText = p.name;
-      document.getElementById('modalQty').innerText = "Quantity: " + p.quantity;
-      document.getElementById('modalPrice').innerText = "Price: " + p.price;
-      document.getElementById('prodModal').classList.add('active');
+    function searchProducts() {
+      const term = document.getElementById('searchInput').value.toLowerCase();
+      filteredProducts = {};
+
+      Object.keys(organizedProducts).forEach(categoryKey => {
+        const filtered = organizedProducts[categoryKey].filter(p =>
+          p.name.toLowerCase().includes(term) ||
+          p.quantity.toLowerCase().includes(term) ||
+          (categoryNames[categoryKey] || '').toLowerCase().includes(term)
+        );
+        if (filtered.length > 0) {
+          filteredProducts[categoryKey] = filtered;
+        }
+      });
+      
+      const hasResults = Object.keys(filteredProducts).length > 0;
+      document.getElementById('noResults').style.display = hasResults ? 'none' : 'block';
+      document.getElementById('productCategories').style.display = hasResults ? 'block' : 'none';
+      
+      renderCategories();
     }
-    function closeProductModal() {
-      document.getElementById('prodModal').classList.remove('active');
+    
+ function downloadPDF() {
+  const downloadBtn = document.getElementById('downloadPDF');
+  downloadBtn.disabled = true;
+  downloadBtn.innerHTML = `
+    <svg class="download-icon" fill="none" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" fill="currentColor" fill-opacity="0.2"/><path d="M21 12C21 7.02944 16.9706 3 12 3V5C15.866 5 19 8.13401 19 12H21Z" fill="white"/></svg>
+    Generating...`;
+
+  setTimeout(() => {
+    try {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Gather all products (flattened, category-agnostic)
+      let allProducts = [];
+      Object.keys(filteredProducts).forEach(catKey => {
+        allProducts.push(...filteredProducts[catKey]);
+      });
+
+      let serialNumber = 1;
+      const tableData = allProducts.map(p => [
+        serialNumber++,
+        p.name,
+        p.quantity,
+        `${p.price}`
+      ]);
+
+      const tagline = "Your trusted supplier of high-quality cleaning and maintenance products, including liquid soaps, floor cleaners, disposable items, and all Taski, Diversey, and Virgo cleaning products. We also offer housekeeping materials, pickles, jams, shaving kits, hotel supplies, and bathroom essentials to cater to both residential and commercial needs. Committed to excellence in quality, service, and customer satisfaction.";
+      const contact = "Phone: 9999651068 (Amrender Sharma)";
+      const address = "Address: E-251/C, Shyam Vihar, Najafgarh, near Dwarka Sec 19, New Delhi - 43";
+
+      // Custom header for each page
+      function addHeader(data) {
+  doc.setFontSize(18);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Poonam Enterprises', doc.internal.pageSize.getWidth() / 2, 16, { align: 'center' });
+
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  // Use splitTextToSize to wrap long tagline text to fit PDF page width
+  const fullTagline = "Your trusted supplier of high-quality cleaning and maintenance products, including liquid soaps, floor cleaners, disposable items, and all Taski, Diversey, and Virgo cleaning products. We also offer housekeeping materials, pickles, jams, shaving kits, hotel supplies, and bathroom essentials to cater to both residential and commercial needs.";
+
+  // Split long tagline to wrap properly, maxWidth ~170
+  const taglineLines = doc.splitTextToSize(fullTagline, 170);
+  doc.text(taglineLines, doc.internal.pageSize.getWidth() / 2, 24, { align: 'center' });
+
+  let bottomY = 22 + (taglineLines.length - 1) * 8;
+  
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.text("Phone: 9999651068 (Amrender Sharma)", 15, bottomY);
+  doc.text("Address: E-251/C, Shyam Vihar, Najafgarh, near Dwarka Sec 19, New Delhi - 43", 15, bottomY + 6);
+  doc.setLineWidth(0.3);
+  doc.line(14, bottomY + 10, 196, bottomY + 10);
+
+  // Set correct start margin for table so it won't overlap
+  if (data && data.settings) data.settings.margin.top = bottomY + 14;
+}
+
+
+      // Custom footer for each page
+      function addFooter() {
+        const pageCount = doc.internal.getNumberOfPages();
+        for (let i = 1; i <= pageCount; i++) {
+          doc.setPage(i);
+          const pageWidth = doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
+          const pageHeight = doc.internal.pageSize.height || doc.internal.pageSize.getHeight();
+
+          doc.setLineWidth(0.2);
+          doc.setDrawColor(160);
+          doc.line(14, pageHeight - 18, 196, pageHeight - 18);
+
+          doc.setFontSize(8);
+          doc.setTextColor(100);
+          doc.setFont('helvetica', 'normal');
+          doc.text(
+            `Generated: ${new Date().toLocaleDateString('en-IN')}`,
+            15,
+            pageHeight - 10
+          );
+          doc.text('Poonam Enterprises | Contact: 9999651068', pageWidth / 2, pageHeight - 10, { align: 'center' });
+          doc.text(
+            `Page ${i} of ${pageCount}`,
+            pageWidth - 15,
+            pageHeight - 10,
+            { align: 'right' }
+          );
+        }
+      }
+
+      // Render header on every page *before* table
+      doc.autoTable({
+        head: [['S.No', 'Product Name', 'Quantity', 'Price']],
+        body: tableData,
+        theme: 'grid',
+        startY: 62,
+        margin: { left: 14, right: 0 },
+        headStyles: {
+          fillColor: [41, 51, 61],
+          textColor: [255, 255, 255],
+          fontStyle: 'bold'
+        },
+        styles: {
+          fontSize: 9,
+          overflow: 'linebreak'
+        },
+        columnStyles: {
+          0: { cellWidth: 15, halign: 'center' },
+          1: { cellWidth: 95 },
+          2: { cellWidth: 32, halign: 'left' },
+          3: { cellWidth: 45, halign: 'right' }
+        },
+        didDrawPage: addHeader
+      });
+
+      addFooter();
+
+      const fileName = `Poonam_Enterprises_Catalog_${new Date().toISOString().split('T')[0]}.pdf`;
+      doc.save(fileName);
+
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      alert('Could not generate PDF. Please try again.');
+    } finally {
+      downloadBtn.disabled = false;
+      downloadBtn.innerHTML = `<svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg> Download PDF`;
     }
-    document.addEventListener('keydown', function(e){ if(e.key == "Escape") closeProductModal(); });
-    document.getElementById('prodModal').addEventListener('click',e =>{
-      if(e.target === e.currentTarget) closeProductModal();
+  }, 500);
+}
+
+
+    document.getElementById('downloadPDF').addEventListener('click', downloadPDF);
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      // Simulate form submission
+      console.log("Form submitted with:", Object.fromEntries(data.entries()));
+      document.getElementById('formSuccess').style.display = 'flex';
+      form.reset();
+      setTimeout(() => {
+        document.getElementById('formSuccess').style.display = 'none';
+      }, 5000);
     });
+    
     fetchProducts();
   </script>
 </body>
