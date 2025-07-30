@@ -714,6 +714,28 @@ Your trusted supplier of high-quality cleaning and maintenance products, includi
         if (filtered.length > 0) filteredProducts[categoryKey] = filtered;
       });
       renderCategories();
+              updateStats();
+
+    }
+  function updateStats() {
+        const statsContainer = document.getElementById('statsContainer');
+        const totalProducts = Object.values(organizedProducts).reduce((sum, products) => sum + products.length, 0);
+        const totalCategories = Object.keys(organizedProducts).length;
+        
+        statsContainer.innerHTML = `
+            <div class="stat">
+                <div class="stat-number">${totalProducts}</div>
+                <div class="stat-label">Total Products</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">${totalCategories}</div>
+                <div class="stat-label">Product Categories</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Customer Support</div>
+            </div>
+        `;
     }
 
     function renderCategories() {
